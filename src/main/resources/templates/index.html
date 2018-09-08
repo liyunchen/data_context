@@ -1,0 +1,1436 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"   xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+  <meta charset="utf-8">
+  <title>Bistu创新杯</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <!-- Favicons -->
+  <link th:href="@{/favicon.ico}" rel="icon">
+  <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet"> -->
+
+  <!-- Bootstrap CSS File -->
+  <link th:href="@{/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  
+  
+  <link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/matrix-style.css}" />
+  <link rel="stylesheet" th:href="@{/css/matrix-media.css}" />
+    
+    
+    
+  <!-- Libraries CSS Files -->
+  <link th:href="@{/lib/nivo-slider/css/nivo-slider.css}" rel="stylesheet">
+  <link th:href="@{/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+
+  <!-- Nivo Slider Theme -->
+  <link th:href="@{/css/nivo-slider-theme.css}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+
+  <!-- Responsive Stylesheet File -->
+  <link th:href="@{/css/responsive.css}" rel="stylesheet">
+  <style>
+      #cyefrom,#cyifrom,#onefrom,#twofrom,#threefrom,#morelist{
+        display:none;
+            
+      }
+      #listtable{
+        background-color: gray;
+      }
+  </style>
+      <style type="text/css">
+           .menulist{
+             position: absolute;
+            display:none; 
+             align:center;
+             width:110px;
+             background-color: gray;
+           }
+           .menulist li{
+              cursor:pointer;
+              width:100%;
+           }
+           .menulist li:hover{
+              background-color: white;
+           }
+           .dropdown:hover  .menulist{
+              display:block;
+           }
+           th{
+		        text-align:center;/** 设置水平方向居中 */
+		        vertical-align:middle;/** 设置垂直方向居中 */
+		        height:60px;
+		        font-size:35px;
+		    }
+          
+     </style>
+  
+</head>
+
+<body data-spy="scroll" data-target="#navbar-example">
+
+  <div id="preloader"></div>
+
+  <header>
+    <!-- header-area start -->
+    <div id="sticker" class="header-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-default">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-example-navbar-collapse-1" aria-expanded="false">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+                <!-- Brand -->
+                <a class="navbar-brand page-scroll sticky-logo" href="index.html">
+                  <h1><span>Bistu</span>创新杯</h1>
+                  <!-- Uncomment below if you prefer to use an image logo -->
+                  <!-- <img src="img/logo.png" alt="" title=""> -->
+								</a>
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+
+              <div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1" id="navbar-example">
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="active">
+                    <a class="page-scroll"onclick="about();"  href="#home">首页</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll"  href="javascript:void(0);" onclick="indexself();"  >个人信息</a>
+                  </li>                                                   
+                  <li>
+                    <a class="page-scroll"  onclick="cye();"  href="#cyefrom">cye</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll"   onclick="cyi();"  href="#cyifrom">cyi</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" onclick="one();"  href="#onefrom">one</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" onclick="two();"  href="#twofrom">two</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" onclick="three();"  href="#threefrom">three</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="#about">帮助</a>
+                  </li>
+                  <li  class="dropdown"  id="dropdown">
+                        <a title="" href="#"  >
+                             <i class="icon icon-user"></i>  
+                             <span class="text"  id="loginname"></span>
+                             <b class="caret"></b>
+                        </a>
+			            
+			        </li>
+                </ul>
+          
+                
+              </div>
+              <!-- navbar-collapse -->
+            </nav>
+            <!-- END: Navigation -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- header-area end -->
+  </header>
+  
+  <!-- header end -->
+
+  <!-- Start Slider Area -->
+  <div id="home"    class="slider-area">
+    <div class="bend niceties preview-2"  id="showbox"  >
+   
+      <div id="ensign-nivoslider" class="slides">
+        <img th:src="@{/img/slider/3.jpg}" alt="" title="#slider-direction-1" />
+        <img th:src="@{/img/slider/2.jpg}" alt="" title="#slider-direction-2" />
+        <img th:src="@{/img/slider/1.jpg}" alt="" title="#slider-direction-3" />
+      </div>
+
+      <!-- direction 1 -->
+      <!-- <div id="slider-direction-1" class="slider-direction slider-one">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="slider-content">
+                layer 1
+                <div class="layer-1-1 hidden-xs wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
+                  <h2 class="title1">The Best Business Information </h2>
+                </div>
+                layer 2
+                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                  <h1 class="title2">We're In The Business Of Helping You Start Your Business</h1>
+                </div>
+                layer 3
+                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
+                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- direction 2 -->
+     <!--  <div id="slider-direction-2" class="slider-direction slider-two">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="slider-content text-center">
+                layer 1
+                <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <h2 class="title1">The Best Business Information </h2>
+                </div>
+                layer 2
+                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                  <h1 class="title2">We're In The Business Of Get Quality Business Service</h1>
+                </div>
+                layer 3
+                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
+                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- direction 3 -->
+      <!-- <div id="slider-direction-3" class="slider-direction slider-two">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="slider-content">
+                layer 1
+                <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <h2 class="title1">The Best business Information </h2>
+                </div>
+                layer 2
+                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                  <h1 class="title2">Helping Business Security  & Peace of Mind for Your Family</h1>
+                </div>
+                layer 3
+                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
+                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <!-- End Slider Area -->
+  
+  <!--  Start login area--->
+  <!--登录弹框-->
+<div class="modal fade" id="loginuser" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">登录</h4>
+            </div>
+            <div class="modal-body">
+                <form id="userForm">
+                    <div class="form-group">
+                        <label class="control-label">用户名:</label>
+                        <input type="text" class="form-control" name="username" id="loginusername" placeholder="请输入用户名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码:</label>
+                        <input type="password" class="form-control" name="password" id="loginpassword" placeholder="请输入指密码"/>
+                    </div>
+                    <div class="form-group"  align="right">
+                          <a   id="losspassword"  href="javascript:void(0);">忘记密码</a>
+                          <a  id="resuseruser"    href="javascript:void(0);">注册账号</a>
+         
+                    </div>
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                
+                <button type="button"  class="btn btn-primary" data-dismiss="modal">关闭</button>
+                <button type="button" onclick="loginuser();" class="btn btn-primary">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 注册弹框 -->
+ <div class="modal fade" id="resuser" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">注册账号</h4>
+            </div>
+            <div class="modal-body">
+                <form id="resForm">
+                    <div class="form-group">
+                        <label class="control-label">用户名:</label>
+                        <input type="text" class="form-control" name="username" id="resusername" placeholder="请输入用户名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码:</label>
+                        <input type="password" class="form-control" name="password" id="respassword" placeholder="请输入密码6为以上"/>
+                    </div>
+                   <div class="form-group">
+                        <label class="control-label">确认密码:</label>
+                        <input type="password" class="form-control"  id="conpassword" placeholder="请确认密码"/>
+                    </div> 
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button"  id="tologin" class="btn btn-primary" data-dismiss="modal">返回登录</button>
+                <button type="button" onclick="addUser();" class="btn btn-primary">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- 修改账号弹框 -->
+ <div class="modal fade" id="updateuser" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改账号信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="updateuserForm">
+                   <input  type="hidden" id="uid"  name="id"/>
+                    <div class="form-group">
+                        <label class="control-label">用户名:</label>
+                        <input type="text" class="form-control" name="username" id="uusername" placeholder="请输入用户名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">旧密码:</label>
+                        <input type="password" class="form-control"  name ="opassword"  id="opassword" placeholder="请输入旧密码"/>
+                    </div>
+                   <div class="form-group">
+                        <label class="control-label">新密码:</label>
+                        <input type="password" class="form-control"  name="password"  id="upassword" placeholder="请输入密码6为以上"/>
+                    </div> 
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button"   class="btn btn-primary" data-dismiss="modal">关闭</button>
+                <button type="button" onclick="updateUser();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--  End login area -->
+  <!--  Start indexself area--->
+  <!--个人信息弹框-->
+<div class="modal fade" id="addcon" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"   onclick="hiddenboxone();">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">个人信息(<span style="color:red">*代表必填项</span>)</h4>
+            </div>
+            <div class="modal-body">
+                <form id="contForm">
+                    <input type="hidden" id="contid" class="contid" name="id">
+                    <div class="form-group">
+                        <label class="control-label"><span style="color:red">*</span>姓名</label>
+                        <input type="text" class="form-control" name="name" id="contname" placeholder="请输入姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span style="color:red">*</span>性别</label>
+                   
+                          <input type="radio" name="sex"  value="男"  id="contsex1"  checked>男
+                          <input type="radio" name="sex"  value="女"  id="contsex2">女
+       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span style="color:red">*</span>邮箱</label>
+                        <input type="text" class="form-control" name="email" id="contemail" placeholder="请输入邮箱"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span style="color:red">*</span>学号</label>
+                        <input type="text" class="form-control" name="num" id="contnum" placeholder="请输入学号"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span style="color:red">*</span>学院</label>
+                        <select class="form-control"  name="academy" id="contacademy">
+						  <option  value="">请选择</option>
+						  <option  value="自动化学院">自动化学院</option>
+						  <option  value="计算机学院">计算机学院</option>
+						  <option  value="信息管理学院">信息管理学院</option>
+						 
+						</select>
+                       <!--  <input type="text" class="form-control"  placeholder="请输入学院"/> -->
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" ><span style="color:red">*</span>班级 </label>
+                        <input type="text" class="form-control" name="classname" id="contclassname" placeholder="请输入班级"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><span style="color:red">*</span>手机</label>
+                        <input type="text" class="form-control" name="phone" id="contphone" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">qq<span style="color:red">(选填)</span></label>
+                        <input type="text" class="form-control" name="qq" id="contqq" placeholder="请输入qq"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">wechat<span style="color:red">(选填)</span></label>
+                        <input type="text" class="form-control" name="wechat" id="contwechat" placeholder="请输入微信"/>
+                    </div>
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"   onclick="hiddenboxone();"  data-dismiss="modal">取消</button>
+                <button type="button" onclick="addcon();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+   
+  <!--  End indexself area -->
+  <!--  Start member area--->
+  <!--修改队员信息弹框-->
+<div class="modal fade" id="addmem" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"  onclick="hiddenboxone();" >&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="memForm">
+                    <input type="hidden" id="memid" class="memid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">队员1姓名:</label>
+                        <input type="text" class="form-control" name="name1" id="name1" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone1" id="phone1" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员2姓名:</label>
+                        <input type="text" class="form-control" name="name2" id="name2" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone2" id="phone2" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员3姓名:</label>
+                        <input type="text" class="form-control" name="name3" id="name3" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone3" id="phone3" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员4姓名:</label>
+                        <input type="text" class="form-control" name="name4" id="name4" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone4" id="phone4" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员5姓名:</label>
+                        <input type="text" class="form-control" name="name5" id="name5" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone5" id="phone5" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员6姓名:</label>
+                        <input type="text" class="form-control" name="name6" id="name6" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone6" id="phone6" placeholder="请输入手机"/>
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  onclick="hiddenboxone();"  data-dismiss="modal">取消</button>
+                <button type="button" onclick="addmem();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--  End member area--->
+  <!--  Start cye area--->
+   <!--修改cye作品弹框-->
+<div class="modal fade" id="addtcye" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"  onclick="hiddenboxone();">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改作品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="tcyeForm"   >
+                    <input type="hidden" id="cyeid" class="cyeid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">作品名称:</label>
+                        <input type="text" class="form-control" name="title" id="cyetitle" placeholder="请输入作品名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">指导老师:</label>
+                        <input type="text" class="form-control" name="teacher" id="cyeteacher" placeholder="请输入指导老师姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">老师电话:</label>
+                        <input type="text" class="form-control" name="tphone" id="cyetphone" placeholder="请输入指导老师电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">js:</label>
+                        <textarea class="form-control" rows="3"  name="js" id="cyejs" placeholder="请输入js"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">cx:</label>
+                        <textarea class="form-control" rows="3"  name="cx" id="cyecx" placeholder="请输入cx"></textarea>
+                    
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">kx:</label>
+                        <textarea class="form-control" rows="3"  name="kx" id="cyekx" placeholder="请输入kx"></textarea>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">ys:</label>
+                        <textarea class="form-control" rows="3"  name="ys" id="cyeys" placeholder="请输入ys"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">附件:</label>
+                        <input type="hidden" id="updatecyefuji"  name="fuji"  value=""/>
+                         <label ><a  id="cyefuji" href=""    target="_Blank"></a></label>
+                        <input type="file"  id="uuploadcyefuji"  name="file"   />
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  onclick="hiddenboxone();"   data-dismiss="modal"   >取消</button>
+                <button type="button" onclick="addtcye();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--  End cye area--->
+  <!--  Start cyi area--->
+   <!--修改cyi作品弹框-->
+<div class="modal fade" id="addtcyi" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"  onclick="hiddenboxone();">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改作品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="tcyiForm">
+                    <input type="hidden" id="cyiid" class="cyiid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">作品名称:</label>
+                        <input type="text" class="form-control" name="title" id="cyititle" placeholder="请输入作品名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">指导老师:</label>
+                        <input type="text" class="form-control" name="teacher" id="cyiteacher" placeholder="请输入指导老师姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">老师电话:</label>
+                        <input type="text" class="form-control" name="tphone" id="cyitphone" placeholder="请输入指导老师电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">cybj:</label>
+                        <textarea class="form-control" rows="3"  name="cybj" id="cyicybj" placeholder="请输入cybj"></textarea>
+                  
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">sjwt:</label>
+                        <textarea class="form-control" rows="3"  name="sjwt" id="cyisjwt" placeholder="请输入sjwt"></textarea>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">kxls:</label>
+                        <textarea class="form-control" rows="3"  name="kxls" id="cyikxls" placeholder="请输入kxls"></textarea>
+                    
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">附件:</label>
+                        <input type="hidden" id="updatecyifuji"  name="fuji"  value=""/>
+                         <label ><a  id="cyifuji" href=""    target="_Blank"></a></label>
+                        <input type="file"  id="uuploadcyifuji"  name="file"   />
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  onclick="hiddenboxone();"  data-dismiss="modal">取消</button>
+                <button type="button" onclick="addtcyi();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--  End cyi area--->
+  <!--  Start one area--->
+    <!--修改one作品弹框-->
+<div class="modal fade" id="addtone" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"  onclick="hiddenboxone();">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改作品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="toneForm">
+                    <input type="hidden" id="oneid" class="oneid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">作品名称:</label>
+                        <input type="text" class="form-control" name="title" id="onetitle" placeholder="请输入作品名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">指导老师:</label>
+                        <input type="text" class="form-control" name="teacher" id="oneteacher" placeholder="请输入指导老师姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">老师电话:</label>
+                        <input type="text" class="form-control" name="tphone" id="onetphone" placeholder="请输入指导老师电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">one:</label>
+                        <textarea class="form-control" rows="3"  name="one" id="oneone" placeholder="请输入one"></textarea>
+                                          </div>
+                    <div class="form-group">
+                        <label class="control-label">two:</label>
+                        <textarea class="form-control" rows="3"  name="two" id="onetwo" placeholder="请输入two"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">three:</label>
+                        <textarea class="form-control" rows="3"  name="three" id="onethree" placeholder="请输入three"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">four:</label>
+                        <textarea class="form-control" rows="3"  name="four" id="onefour" placeholder="请输入four"></textarea>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">five:</label>
+                        <textarea class="form-control" rows="3"  name="five" id="onefive" placeholder="请输入five"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">six:</label>
+                        <textarea class="form-control" rows="3"  name="six" id="onesix" placeholder="请输入six"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">serven:</label>
+                        <textarea class="form-control" rows="3"  name="serven" id="oneserven" placeholder="请输入kx"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">附件:</label>
+                        <input type="hidden" id="updateonefuji"  name="fuji"  value=""/>
+                         <label ><a  id="onefuji" href=""    target="_Blank"></a></label>
+                        <input type="file"  id="uuploadonefuji"  name="file"   />
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  onclick="hiddenboxone();"   data-dismiss="modal">取消</button>
+                <button type="button" onclick="addtone();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--  End one area--->
+  <!--  Start two area--->
+  <!--修改two作品弹框-->
+<div class="modal fade" id="addttwo" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"  onclick="hiddenboxone();">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改作品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="ttwoForm">
+                    <input type="hidden" id="twoid" class="twoid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">作品名称:</label>
+                        <input type="text" class="form-control" name="title" id="twotitle" placeholder="请输入作品名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">指导老师:</label>
+                        <input type="text" class="form-control" name="teacher" id="twoteacher" placeholder="请输入指导老师姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">老师电话:</label>
+                        <input type="text" class="form-control" name="tphone" id="twotphone" placeholder="请输入指导老师电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">one:</label>
+                        <textarea class="form-control" rows="3"  name="one" id="twoone" placeholder="请输入one"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">two:</label>
+                        <textarea class="form-control" rows="3"  name="two" id="twotwo" placeholder="请输入two"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">three:</label>
+                        <textarea class="form-control" rows="3"  name="three" id="twothree" placeholder="请输入three"></textarea>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">four:</label>
+                        <textarea class="form-control" rows="3"  name="four" id="twofour" placeholder="请输入four"></textarea>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">five:</label>
+                        <textarea class="form-control" rows="3"  name="five" id="twofive" placeholder="请输入five"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">checkbox:</label>
+                        <textarea class="form-control" rows="3"  name="checkbox" id="twocheckbox" placeholder="请输入checkbox"></textarea>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">six:</label>
+                        <textarea class="form-control" rows="3"  name="six" id="twosix" placeholder="请输入six"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">附件:</label>
+                        <input type="hidden" id="updatetwofuji"  name="fuji"  value=""/>
+                         <label ><a  id="twofuji" href=""    target="_Blank"></a></label>
+                        <input type="file"  id="uuploadtwofuji"  name="file"   />
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  onclick="hiddenboxone();"  data-dismiss="modal">取消</button>
+                <button type="button" onclick="addttwo();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--  End two area--->
+  <!--  Start three area--->
+   <!--修改three作品弹框-->
+<div class="modal fade" id="addtthree" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"  onclick="hiddenboxone();">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改作品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="tthreeForm">
+                    <input type="hidden" id="threeid" class="threeid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">作品名称:</label>
+                        <input type="text" class="form-control" name="title" id="threetitle" placeholder="请输入作品名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">指导老师:</label>
+                        <input type="text" class="form-control" name="teacher" id="threeteacher" placeholder="请输入指导老师姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">老师电话:</label>
+                        <input type="text" class="form-control" name="tphone" id="threetphone" placeholder="请输入指导老师电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">one:</label>
+                        <textarea class="form-control" rows="3"  name="one" id="threeone" placeholder="请输入one"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">two:</label>
+                        <textarea class="form-control" rows="3"  name="two" id="threetwo" placeholder="请输入two"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">three:</label>
+                        <textarea class="form-control" rows="3"  name="three" id="threethree" placeholder="请输入three"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">four:</label>
+                        <textarea class="form-control" rows="3"  name="four" id="threefour" placeholder="请输入four"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">five:</label>
+                        <textarea class="form-control" rows="3"  name="five" id="threefive" placeholder="请输入five"></textarea>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">checkbox:</label>
+                        <textarea class="form-control" rows="3"  name="checkbox" id="threecheckbox" placeholder="请输入checkbox"></textarea>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">six:</label>
+                        <textarea class="form-control" rows="3"  name="six" id="threesix" placeholder="请输入six"></textarea>
+                      
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">附件:</label>
+                        <input type="hidden" id="updatethreefuji"  name="fuji"  value=""/>
+                         <label ><a  id="threefuji" href=""    target="_Blank"></a></label>
+                        <input type="file"  id="uuploadthreefuji"  name="file"   />
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"   onclick="hiddenboxone();"  data-dismiss="modal">取消</button>
+                <button type="button" onclick="addtthree();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--  End three area--->
+ 
+  <!-- Start About area -->
+  <div id="about" class="about-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>关于创新杯</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- single-well start-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-left">
+            <div class="single-well">
+              <a href="#">
+			    <img th:src="@{/img/about/1.jpg}" alt="">
+			  </a>
+            </div>
+          </div>
+        </div>
+        <!-- single-well end-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-middle">
+            <div class="single-well">
+              <a href="#">
+                <h4 class="sec-head"  color="black">让科技创新点亮青春梦想</h4>
+              </a>
+              <p >
+				 美好的大学时光总是溜得很快，<br>
+				那又如何？<br>
+				时光无法带走你心中天马行空的想象力，<br>
+				光阴也无法带走你脑海里独一无二的idea；<br>
+				因为，就在今天——<br>
+				<strong>第十二届“创新杯”大学生学术科技创新竞赛
+				正式启动了！</strong><br>
+				通过此次大赛，<br>
+				你会邂逅意趣相投的合作伙伴，<br>
+				你将一睹其他选手敏锐独到的创新思维，<br>
+				你会紧跟时代步伐，拥有创业意识，<br>
+				你将砥砺前行，遇见未来更好的自己。<br>
+              </p>
+              <!-- 注意事项 -->
+              <ul>
+                <li>
+                  <i class="fa fa-check"></i> 在校科联主页输入关键词“创新杯”查看比赛详情
+                </li>
+                <li>
+                  <i class="fa fa-check"></i> 校科联主页点击“创新杯”关注比赛进程
+                </li>
+
+                
+              </ul> 
+            </div>
+          </div>
+        </div>
+        <!-- End col-->
+      </div>
+    </div>
+  </div>
+
+  <!-- End About area -->
+  <!-- Start_cyefrom   area-->
+  <div id="cyefrom"   align="center"  class="about-area area-padding">
+     <form  id="tcyefrom"   >
+           
+      <table  border=1  width="960px" height="600px"  >
+          <tr  align="center">
+             <th colspan=4 >cye表单</th>
+          </tr>
+          <tr>
+			    <td><label>队员1姓名</label></td>
+			    <td><input type="text" class="form-control"  name="name1"  placeholder="请输入"></td>
+			    <td><label>手机</label></td>
+			    <td><input type="text" class="form-control"  name="phone1"   placeholder="请输入"></td>
+          </tr>
+          <tr>
+                <td><label>队员2姓名</label></td>
+			    <td><input type="text" class="form-control"  name="name2"  placeholder="请输入"></td>
+			    <td><label>手机</label></td>
+			    <td><input type="text" class="form-control"  name="phone2"   placeholder="请输入"></td>
+          </tr>
+          <tr>
+                <td><label>队员3姓名</label></td>
+			    <td><input type="text" class="form-control"  name="name3"  placeholder="请输入"></td>
+			    <td><label>手机</label></td>
+			    <td><input type="text" class="form-control"  name="phone3"   placeholder="请输入"></td>
+          </tr>
+          <tr>
+                <td><label>队员4姓名</label></td>
+			    <td><input type="text" class="form-control"  name="name4"  placeholder="请输入"></td>
+			    <td><label>手机</label></td>
+			    <td><input type="text" class="form-control"  name="phone4"   placeholder="请输入"></td>
+          </tr>
+          <tr>
+                <td><label>队员5姓名</label></td>
+			    <td><input type="text" class="form-control"  name="name5"  placeholder="请输入"></td>
+			    <td><label>手机</label></td>
+			    <td><input type="text" class="form-control"  name="phone5"   placeholder="请输入"></td>
+          </tr>
+          <tr>
+                <td><label>队员6姓名</label></td>
+			    <td><input type="text" class="form-control"  name="name6"  placeholder="请输入"></td>
+			    <td><label>手机</label></td>
+			    <td><input type="text" class="form-control"  name="phone6"   placeholder="请输入"></td>
+          </tr>
+          <tr>
+                <td><label><span style="color:red">*</span>作品名称</label></td>
+                <td colspan=3><input type="text" class="form-control"  id="cfmcyetitle" name="title"  placeholder="请输入"/></td>
+          </tr>
+          <tr>
+                <td><label><span style="color:red">*</span>指导老师</label></td>
+			    <td><input type="text" class="form-control"  id="cfmcyeteacher" name="teacher"  placeholder="请输入"></td>
+			    <td><label>手机</label></td>
+			    <td><input type="text" class="form-control"  name="tphone"   placeholder="请输入"></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>js</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmcyejs" rows="3"  name="js"  placeholder="请输入"></textarea></td>
+            
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>cx</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmcyecx" rows="3"  name="cx"  placeholder="请输入"></textarea></td>
+            
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>kx</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmcyekx" rows="3"  name="kx"  placeholder="请输入"></textarea></td>
+             
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>ys</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmcyeys" rows="3"  name="ys"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td>附件<span style="color:red">(非必选)</span></td>
+             
+             <td  colspan=3>
+                 <input type="hidden" id="insertcyefuji"  name="fuji"  value=""/>
+                 <input type="file"  id="uploadcyefuji"  name="file" />
+             </td>
+          </tr>
+          <tr>
+            
+             <td  colspan=4  align="center"><input type="button" class="btn btn-info"  onclick="insertcye();" value="提交"/></td>
+          </tr>
+      </table>
+      </form>
+  </div>
+  <!-- End_cyefrom area -->
+  <!-- Start_cyifrom   area-->
+  <div id="cyifrom"   align="center"  class="about-area area-padding">
+        <form id="tcyifrom">
+      <table  border=1  width="960px" height="600px">
+          <tr  align="center">
+             <th colspan=4 >cyi表单</th>
+          </tr>
+          <tr>
+             <td><label>队员1姓名:</label></td>
+             <td><input type="text" name="name1"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone1"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员2姓名:</label></td>
+             <td><input type="text" name="name2"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone2"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员3姓名:</label></td>
+             <td><input type="text" name="name3"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone3"  class="form-control" placeholder="请输入"/  ></td>
+          </tr>
+          <tr>
+             <td><label>队员4姓名:</label></td>
+             <td><input type="text" name="name4"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone4" class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员5姓名:</label></td>
+             <td><input type="text" name="name5" class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone5" class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员6姓名:</label></td>
+             <td><input type="text" name="name6"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone6"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>作品名称</label></td>
+             <td   colspan=3><input type="text" name="title"  id="cfmcyititle" class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>指导老师</label></td>
+             <td><input type="text" name="teacher" id="cfmcyiteacher" class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="tphone"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>cybj</label></td>
+             <td  colspan=3><textarea class="form-control" rows="3"  id="cfmcyicybj"  name="cybj"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>sjwt</label></td>
+             <td  colspan=3><textarea class="form-control" rows="3" id="cfmcyisjwt" name="sjwt"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>kxls</label></td>
+             <td  colspan=3><textarea class="form-control" rows="3" id="cfmcyikxls" name="kxls"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td>附件<span style="color:red">(非必选)</span></td>
+             
+             <td  colspan=3>
+                 <input type="hidden" id="insertcyifuji"  name="fuji"  value=""/>
+                 <input type="file"  id="uploadcyifuji"  name="file" />
+             </td>
+          </tr>
+          <tr  >
+             <td colspan=4   align="center"><input type="button"  class="btn btn-info"  onclick="insertcyi();" value="提交"/></td>
+          </tr>
+      </table>
+      </form>
+  </div>
+  <!-- End_cyifrom area -->
+  <!-- Start_onefrom   area-->
+  <div id="onefrom"   align="center"  class="about-area area-padding">
+        <form  id="tonefrom"  >
+      <table  border=1  width="960px" height="600px">
+          <tr  align="center">
+             <th colspan=4 >one表单</th>
+          </tr>
+          <tr>
+             <td><label>队员1姓名:</label></td>
+             <td><input type="text" name="name1"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone1"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员2姓名:</label></td>
+             <td><input type="text" name="name2"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone2"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员3姓名:</label></td>
+             <td><input type="text" name="name3"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone3"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员4姓名:</label></td>
+             <td><input type="text" name="name4"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone4"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员5姓名:</label></td>
+             <td><input type="text" name="name5"  class="form-control"  placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone5"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员6姓名:</label></td>
+             <td><input type="text" name="name6"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone6"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>作品名称</label></td>
+             <td  colspan=3><input type="text" name="title"  id="cfmonetitle" class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>指导老师</label></td>
+             <td><input type="text" name="teacher"   id="cfmoneteacher" class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="tphone"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>one</label></td>
+             <td colspan=3><textarea class="form-control" id="cfmoneone"  rows="3"  name="one"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>two</label></td>
+             <td  colspan=3><textarea class="form-control"   id="cfmonetwo" rows="3"  name="two"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>three</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmonethree"  rows="3"  name="three"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>four</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmonefour"  rows="3"  name="four"  placeholder="请输入"></textarea></td>
+             
+          </tr>
+          
+          <tr>
+             <td><label><span style="color:red">*</span>five</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmonefive"   rows="3" name="five"  placeholder="请输入"></textarea></td>
+          
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>six</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmonesix"  rows="3" name="six"  placeholder="请输入"></textarea></td>
+     
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>serven</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmoneserven"   rows="3" name="serven"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td>附件<span style="color:red">(非必选)</span></td>
+             
+             <td  colspan=3>
+                 <input type="hidden" id="insertonefuji"  name="fuji"  value=""/>
+                 <input type="file"  id="uploadonefuji"  name="file" />
+             </td>
+          </tr>
+          <tr>
+            
+             <td align="center"  colspan=4><input type="button"   class="btn btn-info"  onclick="insertone();" value="提交"/></td>
+          </tr>
+      </table>
+      </form>
+  </div>
+  <!-- End_onefrom area -->
+  <!-- Start_twofrom   area-->
+  <div id="twofrom"   align="center"  class="about-area area-padding">
+        <form  id="ttwofrom"  >
+      <table  border=1  width="960px" height="600px">
+      <tr  align="center">
+             <th colspan=4 >two表单</th>
+      </tr>
+      <tr>
+             <td><label>队员1姓名:</label></td>
+             <td><input type="text" name="name1"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone1"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员2姓名:</label></td>
+             <td><input type="text" name="name2"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone2"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员3姓名:</label></td>
+             <td><input type="text" name="name3"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone3"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员4姓名:</label></td>
+             <td><input type="text" name="name4" class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone4"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员5姓名:</label></td>
+             <td><input type="text" name="name5"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone5"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员6姓名:</label></td>
+             <td><input type="text" name="name6" class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone6"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>作品名称</label></td>
+             <td  colspan=3><input type="text" name="title" id="cfmtwotitle" class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>指导老师</label></td>
+             <td><input type="text" name="teacher"  id="cfmtwoteacher"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="tphone"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>one</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmtwoone" rows="3"  name="one"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>two</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmtwotwo"  rows="3"  name="two"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>three</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmtwothree"  rows="3"  name="three"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>four</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmtwofour"  rows="3"  name="four"  placeholder="请输入"></textarea></td>
+             
+          </tr>
+          
+          <tr>
+             <td><label><span style="color:red">*</span>five</label></td>
+             <td  colspan=3><textarea class="form-control"   id="cfmtwofive"  rows="3" name="five"  placeholder="请输入"></textarea></td>
+          
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>checkbox</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmtwocheckbox"   rows="3" name="checkbox"  placeholder="请输入"></textarea></td>
+ 
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>six</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmtwosix"   rows="3" name="six" placeholder="请输入"></textarea></td>
+     
+          </tr>
+          
+         
+          <tr>
+             <td>附件<span style="color:red">(非必选)</span></td>
+             
+             <td  colspan=3>
+                 <input type="hidden" id="inserttwofuji"  name="fuji"  value=""/>
+                 <input type="file"  id="uploadtwofuji"  name="file" />
+             </td>
+          </tr>
+          <tr>
+            
+             <td align="center"  colspan=4><input type="button"  class="btn btn-info"  onclick="inserttwo();" value="提交"/></td>
+          </tr>
+      </table>
+      </form>
+  </div>
+  <!-- End_twofrom area -->
+  <!-- Start_cyefrom   area-->
+  <div id="threefrom"   align="center"  class="about-area area-padding">
+        <form  id="tthreefrom">
+      <table  border=1  width="960px" height="600px">
+      <tr  align="center">
+             <th colspan=4 >three表单</th>
+          </tr>
+      <tr>
+             <td><label>队员1姓名:</label></td>
+             <td><input type="text" name="name1"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone1"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员2姓名:</label></td>
+             <td><input type="text" name="name2"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone2"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员3姓名:</label></td>
+             <td><input type="text" name="name3"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone3"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员4姓名:</label></td>
+             <td><input type="text" name="name4"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone4"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员5姓名:</label></td>
+             <td><input type="text" name="name5"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone5"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label>队员6姓名:</label></td>
+             <td><input type="text" name="name6"  class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="phone6"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>作品名称</label></td>
+             <td  colspan=3><input type="text" name="title"  id="cfmthreetitle"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>指导老师</label></td>
+             <td><input type="text" name="teacher"  id="cfmthreeteacher" class="form-control" placeholder="请输入"/></td>
+             <td><label>手机:</label></td>
+             <td><input type="text" name="tphone"  class="form-control" placeholder="请输入"/></td>
+          </tr>
+
+          <tr>
+             <td><label><span style="color:red">*</span>one</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmthreeone" rows="3"  name="one"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>two</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmthreetwo"  rows="3"  name="two"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>three</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmthreethree"  rows="3"  name="three"  placeholder="请输入"></textarea></td>
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>four</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmthreefour"  rows="3"  name="four"  placeholder="请输入"></textarea></td>
+             
+          </tr>
+          
+          <tr>
+             <td><label><span style="color:red">*</span>five</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmthreefive"  rows="3" name="five"  placeholder="请输入"></textarea></td>
+          
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>checkbox</label></td>
+             <td  colspan=3><textarea class="form-control" id="cfmthreecheckbox"  rows="3" name="checkbox"  placeholder="请输入"></textarea></td>
+ 
+          </tr>
+          <tr>
+             <td><label><span style="color:red">*</span>six</label></td>
+             <td  colspan=3><textarea class="form-control"  id="cfmthreesix"  rows="3" name="six"  placeholder="请输入"></textarea></td>
+     
+          </tr>
+          <tr>
+             <td>附件<span style="color:red">(非必选)</span></td>
+             
+             <td  colspan=3>
+                 <input type="hidden" id="insertthreefuji"  name="fuji"  value=""/>
+                 <input type="file"  id="uploadthreefuji"  name="file" />
+             </td>
+          </tr>
+          <tr>
+            
+             <td align="center" colspan=4><input type="button"  class="btn btn-info"  onclick="insertthree();" value="提交"/></td>
+          </tr>
+      </table>
+      </form>
+  </div>
+  <!-- End_threefrom area -->
+  <!-- Start About area -->
+  <div id="morelist" class="about-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center"   align="center">
+            <h2>查看已申报的比赛</h2><br>
+         
+	            <select  style="width:150px;height:34px;" id="wherefrom">
+	               <option  value="请选择比赛">请选择比赛</option>
+	               <option  value="cye">cye</option>
+	               <option  value="cyi">cyi</option>
+	               <option  value="one">one</option>
+	               <option  value="two">two</option>
+	               <option  value="three">three</option>
+	            </select>
+	            <input type="button"  id="buttonfrom"  class="btn btn-info" value="查看"/>
+        
+          </div>
+        </div>
+      </div>
+      <div class="row"> 
+        <table  class="table table-hover" id="listtable" border=2  width="100%" >
+          
+          
+      </table>
+      </div>
+    
+    </div>
+  </div>
+
+  <!-- End About area -->
+  
+  <!-- Start Footer bottom Area -->
+  <footer>
+    <div class="footer-area-bottom"  >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="copyright text-center">
+              <p>
+                &copy; Copyright <strong>Bistu</strong>. All Rights Reserved
+              </p>
+            </div>
+            <div class="credits">
+              
+              by BootstrapMade - More Templates <a href="#" target="_blank" title="iflab">iflab</a> - Collect from <a href="#" title="网络中心" target="_blank">网络中心</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+  <script th:src="@{/js/jquery.dataTables.min.js}"></script>
+  <script th:src="@{/js/layer.js}"></script>
+  <script th:src="@{/js/ajaxfileupload.js}"></script>
+  <script th:src="@{/lib/wow/wow.min.js}"></script>
+  <script th:src="@{/lib/nivo-slider/js/jquery.nivo.slider.js}" type="text/javascript"></script>
+  <!-- Contact Form JavaScript File -->
+  <script th:src="@{/js/main.js}"></script>
+  <script th:src="@{/js/index/user.js}"></script>
+  <script  th:src="@{/js/index/cont.js}"></script>
+  <script  th:src="@{/js/index/test.js}"></script>
+
+</body>
+</html>

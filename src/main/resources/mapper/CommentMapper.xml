@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chenlove.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="cn.chenlove.model.Comment">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="shopid" jdbcType="VARCHAR" property="shopid" />
+    <result column="customerid" jdbcType="VARCHAR" property="customerid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="contenttime" jdbcType="VARCHAR" property="contenttime" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <select id="getAllComment" parameterType="cn.chenlove.model.Comment" resultMap="BaseResultMap">
+        select c.id,cst.name as name ,c.content,c.contenttime 
+        from  comment c 
+        join customer cst on cst.id=c.customerid  
+         where shopid=#{shopid} 
+	     <if test="contenttime != '' and contenttime != null">  
+             and c.contenttime  like  '%' #{contenttime} '%' 
+        </if>
+        
+  </select>
+  <select id="getComment" parameterType="String" resultMap="BaseResultMap">
+        select c.id,cst.name as name ,c.content,c.contenttime 
+        from  comment c 
+        join customer cst on cst.id=c.customerid  
+        where c.id=#{id} 
+	     
+        
+  </select>
+</mapper>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-style.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-media.css}" />
+    <link rel="stylesheet" th:href="@{/css/metroStyle.css}" type="text/css">
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <title>three管理</title>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div th:include="common/top :: top"></div>
+<div th:include="common/menu :: menu"></div>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">three</a> </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>three列表</h5>
+                    </div>
+                    <form class="form-inline">
+                        
+                        <div class="form-group">
+                            <label >作品名称:</label>
+                            <input type="text" class="form-control" id="titlename-search" placeholder="作品名称"/>
+                        </div>
+                        <div class="form-group">
+                            <label >参赛者:</label>
+                            <input type="text" class="form-control" id="name-search" placeholder="姓名"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label">学院:</label>
+                            <select id="academy-search"  class="form-control">
+                                <option value="">选择学院</option>
+                                <option value="计算机学院">计算机学院</option>
+                                <option value="自动化学院">自动化学院</option>
+                                <option value="信息管理学院">信息管理学院</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label >学号:</label>
+                            <input type="text" class="form-control" id="num-search" placeholder="学号"/>
+                        </div>
+                        <button type="button"  onclick="search();" class="btn btn-primary">查询</button>
+                       <!--  <button shiro:hasPermission="/users/add" type="button"  onclick="$('#addUser').modal();" class="btn btn-info" style="float: right; margin-right: 1px;">新增</button>
+                        <button shiro:hasPermission="/users/delete" type="button"  onclick="delByID();" class="btn btn-info" style="float: right; margin-right: 1px;">删除</button>
+                        <button shiro:hasPermission="/users/saveUserRoles" type="button"  onclick="allotRole();" class="btn btn-info" style="float: right; margin-right: 1px;">分配角色</button> -->
+                    </form>
+                   <!--  <form id="selectForm">
+				        <table>
+				            <tr>
+				              <td>作品名称</td><td><input type="text" name="titlename" /></td>
+				              <td>参赛者</td><td><input type="text" name="name" /></td>
+				              <td>学院</td><td><input type="text"  name="academy" /></td>
+				              <td>学号</td><td><input type="text"  name="num" /></td>
+				              <td><input class="btn btn-info"  type="button"  onclick="selectall();"  value="查询" /></td>
+				            </tr>
+				        </table>
+                    </form> -->
+                    <div class="widget-content nopadding">
+                        <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="datatable" >
+                            <thead>
+                            <tr>
+                                 <!-- <th>
+                                    <input type="checkbox" class="checkall" />
+                                </th> -->
+                                <th>姓名</th>
+                                <th>作品名称</th>
+                                <th>性别</th>
+                                <th>邮箱</th>
+                                <th>学号</th>
+                                <th>学院</th>
+                                <th>班级</th>
+                                <th>手机</th>
+                                <th>qq</th>
+                                <th>微信</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table"   id="datatable"  >
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 查看作品弹框 -->
+<div class="modal fade" id="addtthree" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">作品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="tthreeForm">
+                    <input type="hidden" id="threeid" class="threeid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">作品名称:</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="请输入作品名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">指导老师:</label>
+                        <input type="text" class="form-control" name="teacher" id="teacher" placeholder="请输入指导老师姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">老师电话:</label>
+                        <input type="text" class="form-control" name="tphone" id="tphone" placeholder="请输入指导老师电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">one:</label>
+                        <input type="text" class="form-control" name="one" id="one" placeholder="请输入one"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">two:</label>
+                        <input type="text" class="form-control" name="two" id="two" placeholder="请输入two"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">three:</label>
+                        <input type="text" class="form-control" name="three" id="three" placeholder="请输入three"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">four:</label>
+                        <input type="text" class="form-control" name="four" id="four" placeholder="请输入four"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">five:</label>
+                        <input type="text" class="form-control" name="five" id="five" placeholder="请输入five"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">checkbox:</label>
+                        <input type="text" class="form-control" name="checkbox" id="checkbox" placeholder="请输入checkbox"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">six:</label>
+                        <input type="text" class="form-control" name="six" id="six" placeholder="请输入six"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">附件:</label>
+                        <input type="text" class="form-control" name="fuji" id="fuji" placeholder="请输入fuji"/>
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+            <!--     <button type="button" onclick="addtthree();" class="btn btn-primary">保存</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Footer-part-->
+<div class="row-fluid">
+    <div id="footer" class="span12"> 2018 &copy; lyc <a href="http://www.cnblogs.com/chenlove/">博客</a> </div>
+</div>
+<!--end-Footer-part-->
+<script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.ztree.core.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.ztree.excheck.js}"></script>
+
+<script type="text/javascript">
+
+        var table;
+		$(document).ready(function() {
+		    table = $('#datatable').DataTable( {
+		        "dom": '<"top"i>rt<"bottom"flp><"clear">',
+		        "searching" : false,
+		        "bJQueryUI": true,
+		        "sPaginationType": "full_numbers",
+		        "serverSide": true,//开启服务器模式，使用服务器端处理配置datatable
+		        "processing": true,//开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+		        //"ajax": '${ss}/user/userList.do',
+		        ajax : function(data, callback, settings) {
+		            //封装请求参数
+		            var param = getQueryCondition(data);
+		
+		            $.ajax({
+		                type: "GET",
+		                url: 'cont/threecont',
+		                cache : false,  //禁用缓存
+		                data: param,    //传入已封装的参数
+		                dataType: "json",
+		                success: function(result) {
+		                    //封装返回数据  如果参数相同，可以直接返回result ，此处作为学习，先这么写了。
+		                    var returnData = {};
+		                    returnData.draw = result.draw;//这里直接自行返回了draw计数器,应该由后台返回
+		                    returnData.recordsTotal = result.recordsTotal;//总记录数
+		                    returnData.recordsFiltered = result.recordsFiltered;//后台不实现过滤功能，每次查询均视作全部结果
+		                    returnData.data = result.data;
+		                    //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+		                    //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+		                    callback(returnData);
+		                },
+		                error: function(XMLHttpRequest, textStatus, errorThrown) {
+		                    alert("查询失败");
+		                }
+		            });
+		        },
+		        "columns": [
+		            /* {
+		                "sClass": "text-center",
+		                "data": "id",
+		                "render": function (data, type, full, meta) {
+		                    return '<input type="checkbox"  class="checkchild"  value="' + data + '" />';
+		                },
+		                "bSortable": false
+		            }, */
+		            { "data": "name" },
+		            { "data": "titlename" },
+		            { "data": "sex" },
+		            { "data": "email" },
+		            { "data": "num" },
+		            { "data": "academy" },
+		            { "data": "classname" },
+		            { "data": "phone" },
+		            { "data": "qq" },
+		            { "data": "wechat"},
+		            { "data": "id" },
+		        ],
+		        columnDefs:[
+		            { "orderable": false, "targets": 1 },
+		            { "orderable": false, "targets": 2 },
+		            {
+		                "orderable": false,
+		                "render": function(data, type, row) {
+		                	return '<input type="button" value="查看作品"  class="btn btn-primary"   onclick=updatetcye('+data+'); /> ';
+		                    /* if(data==1){
+		                        return "开启";
+		                    }else{
+		                        return "关闭";
+		                    } */
+		                },
+		                "targets": 10
+		            },
+		        ], 
+		
+		    } );
+		
+		
+		
+		} );
+		
+		function search(){
+		    table.ajax.reload();
+		}
+		//封装查询参数
+		function getQueryCondition(data){
+		    var param = {};
+		    //组装排序参数
+		    param.academy = $("#academy-search").val();//查询条件
+		    param.name = $("#name-search").val();//查询条件
+		    param.num = $("#num-search").val();//查询条件
+		    param.titlename = $("#titlename-search").val();//查询条件
+		    //组装分页参数
+		    param.start = data.start;
+		    param.length = data.length;
+		    param.draw = data.draw;
+		    return param;
+		}
+
+   function updatetthree(id){
+	    $.ajax({
+           async:false,
+           type : "get",
+           data:{id:id},
+           url: "/tthree/getonetthree",
+           dataType:'json',
+           success: function(data){
+               $("#threeid").val(data.id);
+               $("#title").val(data.title);
+               $("#teacher").val(data.teacher);
+               $("#tphone").val(data.tphone);
+               $("#one").val(data.one);
+               $("#two").val(data.two);
+               $("#three").val(data.three);
+               $("#four").val(data.four);
+               $("#five").val(data.five);
+               $("#six").val(data.six);
+               $("#checkbox").val(data.checkbox);
+               $("#fuji").val(data.fuji);
+           	$('#addtthree').modal();
+           }
+       });
+  }
+	  
+   </script>
+
+</body>
+</html>

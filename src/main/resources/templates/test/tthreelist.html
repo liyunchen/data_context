@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+   <div >
+  
+      <table  border=2  width="100%" >
+          <tr>
+             <th>作品名称</th>
+             <th>指导老师</th>
+             <th>老师电话</th>
+             <th>one</th>        
+             <th>two</th>
+             <th>three</th>
+             <th>four</th>
+             <th>five</th>
+             <th>checkbox</th>        
+             <th>six</th>
+             <th>附件</th>
+             <th>操作</th>
+           </tr>
+           <tr th:each="tthree : ${tthreelist}">
+             <td th:text="${tthree.title}"></td>
+             <td th:text="${tthree.teacher}"></td>
+             <td th:text="${tthree.tphone}"></td>
+             <td th:text="${tthree.one}"></td>
+             <td th:text="${tthree.two}"></td>
+             <td th:text="${tthree.three}"></td>
+             <td th:text="${tthree.four}"></td>
+             <td th:text="${tthree.five}"></td>
+             <td th:text="${tthree.checkbox}"></td>
+             <td th:text="${tthree.six}"></td>
+
+             <td th:text="${tthree.fuji}"></td>
+             <td >
+                <input type="button"   th:onclick="'updatetthreemem(\''+${tthree.id}+'\')' "  value="修改队员"/>
+                <input type="button"   th:onclick="'updatetthree(\''+${tthree.id}+'\')' "  value="修改作品"/>
+                <input type="button" th:onclick="'deltthree(\''+${tthree.id}+'\')' "  value="删除"/>
+             </td>
+           </tr>
+           <tr>
+             <td><a  href="tthree">添加</a></td>
+           </tr>
+      </table>
+   </div>
+ <!--修改队员弹框-->
+<div class="modal fade" id="addtthreemem" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改队员信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="tthreememForm">
+                    <input type="hidden" id="memid" class="memid" name="id">
+                          <div class="form-group">
+                        <label class="control-label">队员1:</label>
+                        <input type="text" class="form-control" name="name1" id="name1" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone1" id="phone1" placeholder="请输入手机号"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员2:</label>
+                        <input type="text" class="form-control" name="name2" id="name2" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone2" id="phone2" placeholder="请输入手机号"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员3:</label>
+                        <input type="text" class="form-control" name="name3" id="name3" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone3" id="phone3" placeholder="请输入手机号"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员4:</label>
+                        <input type="text" class="form-control" name="name4" id="name4" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone4" id="phone4" placeholder="请输入手机号"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员5:</label>
+                        <input type="text" class="form-control" name="name5" id="name5" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone5" id="phone5" placeholder="请输入手机号"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员6:</label>
+                        <input type="text" class="form-control" name="name6" id="name6" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone6" id="phone6" placeholder="请输入手机号"/>
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" onclick="addtthreemem();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!--修改作品弹框-->
+<div class="modal fade" id="addtthree" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改作品信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="tthreeForm">
+                    <input type="hidden" id="threeid" class="threeid" name="id">
+                    <div class="form-group">
+                        <label class="control-label">作品名称:</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="请输入作品名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">指导老师:</label>
+                        <input type="text" class="form-control" name="teacher" id="teacher" placeholder="请输入指导老师姓名"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">老师电话:</label>
+                        <input type="text" class="form-control" name="tphone" id="tphone" placeholder="请输入指导老师电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">one:</label>
+                        <input type="text" class="form-control" name="one" id="one" placeholder="请输入one"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">two:</label>
+                        <input type="text" class="form-control" name="two" id="two" placeholder="请输入two"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">three:</label>
+                        <input type="text" class="form-control" name="three" id="three" placeholder="请输入three"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">four:</label>
+                        <input type="text" class="form-control" name="four" id="four" placeholder="请输入four"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">five:</label>
+                        <input type="text" class="form-control" name="five" id="five" placeholder="请输入five"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">checkbox:</label>
+                        <input type="text" class="form-control" name="checkbox" id="checkbox" placeholder="请输入checkbox"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">six:</label>
+                        <input type="text" class="form-control" name="six" id="six" placeholder="请输入six"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">附件:</label>
+                        <input type="text" class="form-control" name="fuji" id="fuji" placeholder="请输入fuji"/>
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" onclick="addtthree();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!--end-Footer-part-->
+	<script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/js/layer.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.ztree.core.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.ztree.excheck.js}"></script>
+   <script>
+	   //------------队员----------
+	    //更新信息
+       function addtthreemem(){
+    	   $.ajax({
+    		   async:false,
+               type: "post",
+               url:'/tthree/updatetthreemem',
+               data:$('#tthreememForm').serialize(),// 你的formid
+               success: function(data) {
+                   if(data=="Ok"){
+                       layer.msg('修改成功');
+                       window.location.reload();
+                       $('#addtthreemem').modal('hide');
+                   }else{
+                       layer.msg('修改失败');
+                       $('#addtthreemem').modal('hide');
+                   }
+               }
+           });
+       }
+       //去更新页面
+       function updatetthreemem(id){
+    	    $.ajax({
+                async:false,
+                type : "get",
+                data:{id:id},
+                url: "/tthree/getonetthreemem",
+                dataType:'json',
+                success: function(data){
+                	$("#memid").val(data.id);
+	                $("#name1").val(data.name1);
+	                $("#phone1").val(data.phone1);
+	                $("#name2").val(data.name2);
+	                $("#phone2").val(data.phone2);
+	                $("#name3").val(data.name3);
+	                $("#phone3").val(data.phone3);
+	                $("#name4").val(data.name4);
+	                $("#phone4").val(data.phone4);
+	                $("#name5").val(data.name5);
+	                $("#phone5").val(data.phone5);
+	                $("#name6").val(data.name6);
+	                $("#phone6").val(data.phone6);
+                	$('#addtthreemem').modal();
+                }
+            });
+       }
+	   //------------作品----------
+       //更新信息
+       function addtthree(){
+    	   $.ajax({
+    		   async:false,
+               type: "post",
+               url:'/tthree/updatetthree',
+               data:$('#tthreeForm').serialize(),// 你的formid
+               success: function(data) {
+                   if(data=="Ok"){
+                       layer.msg('修改成功');
+                       window.location.reload();
+                       $('#addtthree').modal('hide');
+                   }else{
+                       layer.msg('修改失败');
+                       $('#addtthree').modal('hide');
+                   }
+               }
+           });
+       }
+       //去更新页面
+       function updatetthree(id){
+    	    $.ajax({
+                async:false,
+                type : "get",
+                data:{id:id},
+                url: "/tthree/getonetthree",
+                dataType:'json',
+                success: function(data){
+                    $("#threeid").val(data.id);
+                    $("#title").val(data.title);
+                    $("#teacher").val(data.teacher);
+                    $("#tphone").val(data.tphone);
+                    $("#one").val(data.one);
+                    $("#two").val(data.two);
+                    $("#three").val(data.three);
+                    $("#four").val(data.four);
+                    $("#five").val(data.five);
+                    $("#six").val(data.six);
+                    $("#checkbox").val(data.checkbox);
+                    $("#fuji").val(data.fuji);
+                	$('#addtthree').modal();
+                }
+            });
+       }
+       //删除
+       function deltthree(id){
+    	   layer.confirm('您确定要删除信息吗？', {
+               btn: ['确认','取消'] //按钮
+           }, function(){
+               $.ajax({
+                   cache: true,
+                   type: "POST",
+                   url:'/tthree/del',
+                   data:{id:id},
+                   async: false,
+                   success: function(data) {
+                       if(data=="Ok"){
+                           layer.msg('删除成功');
+                           window.location.reload();
+                       }else{
+                           layer.msg('删除失败');
+                       }
+                   }
+               });
+           });
+       }
+   </script>
+</body>
+</html>

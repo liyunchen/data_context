@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-style.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-media.css}" />
+    <link rel="stylesheet" th:href="@{/css/metroStyle.css}" type="text/css">
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <title>评论管理</title>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div th:include="common/top :: top"></div>
+<div th:include="common/menu :: menu"></div>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">预约</a> </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>预约列表</h5>
+                    </div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label >预约时间:</label>
+                            <input type="text" class="form-control" id="contenttime-search" placeholder="预约时间:"/>
+                        </div>
+                        
+                        <!-- <div class="form-group">
+                            <label class="control-label">状态:</label>
+                            <select id="status-search"  class="form-control">
+                                <option value="">全部</option>
+                                <option value="1">开启</option>
+                                <option value="0">关闭</option>
+                            </select>
+                        </div> -->
+                        <button type="button"  onclick="search();" class="btn btn-primary">查询</button>
+                       <!--  <button shiro:hasPermission="/users/add" type="button"  onclick="$('#addUser').modal();" class="btn btn-info" style="float: right; margin-right: 1px;">新增</button>
+                        <button shiro:hasPermission="/users/delete" type="button"  onclick="delByID();" class="btn btn-info" style="float: right; margin-right: 1px;">删除</button>
+                        <button shiro:hasPermission="/users/saveUserRoles" type="button"  onclick="allotRole();" class="btn btn-info" style="float: right; margin-right: 1px;">分配角色</button> -->
+                    </form>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table" id="datatable" >
+                            <thead>
+                            <tr>
+                                <th>预约人</th>
+                                <th>评语</th>
+                                <th>日期</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--详细弹框-->
+<div class="modal fade" id="openbox" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">详细评论</h4>
+            </div>
+            <div class="modal-body">
+                
+                  
+                    <div class="form-group">
+                        <label class="control-label">预约人:</label>
+                        <label class="control-label"  id="openname">预约人:</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">评语:</label>
+                        <label class="control-label"  id="opencontent">预约人:</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">日期:</label>
+                        <label class="control-label"  id="opencontenttime">预约人:</label>
+                    </div>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!--/详细弹框-->
+
+
+
+<!--Footer-part-->
+<div class="row-fluid">
+    <div id="footer" class="span12"> 2018 &copy; lyc <a href="http://www.cnblogs.com/chenlove/">博客</a> </div>
+</div>
+<!--end-Footer-part-->
+<script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.ztree.core.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.ztree.excheck.js}"></script>
+
+<script type="text/javascript">
+    
+    var table;
+    $(document).ready(function() {
+        table = $('#datatable').DataTable( {
+            "dom": '<"top"i>rt<"bottom"flp><"clear">',
+            "searching" : false,
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "serverSide": true,//开启服务器模式，使用服务器端处理配置datatable
+            "processing": true,//开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+            ajax : function(data, callback, settings) {
+                //封装请求参数
+                var param = getQueryCondition(data);
+
+                $.ajax({
+                    type: "GET",
+                    url: 'comment/getAllList',
+                    cache : false,  //禁用缓存
+                    data: param,    //传入已封装的参数
+                    dataType: "json",
+                    success: function(result) {
+                        //封装返回数据  如果参数相同，可以直接返回result ，此处作为学习，先这么写了。
+                        var returnData = {};
+                        returnData.draw = result.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                        returnData.recordsTotal = result.recordsTotal;//总记录数
+                        returnData.recordsFiltered = result.recordsFiltered;//后台不实现过滤功能，每次查询均视作全部结果
+                        returnData.data = result.data;
+                        //调用DataTables提供的callback方法，代表数据已封装完成并传回DataTables进行渲染
+                        //此时的数据需确保正确无误，异常判断应在执行此回调前自行处理完毕
+                        callback(returnData);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("查询失败");
+                    }
+                });
+            },
+            //"ajax": 'comment/getAllList',
+            "columns": [
+                { "data": "name" },
+                { "data": "content" },
+                { "data": "contenttime" },
+                { "data": "id" },
+            ],
+            columnDefs:[
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 2 },
+                {
+	                "orderable": false,
+	                "render": function(data, type, row) {
+	                	return '<input type="button" value="详细"  class="btn btn-primary"     onclick=openById("'+data+'"); /> ';
+	                    
+	                },
+	                "targets":3
+	            },
+            ],
+
+        } );
+
+
+
+    } );
+
+    function search(){
+        table.ajax.reload();
+    }
+    //封装查询参数
+    function getQueryCondition(data){
+        var param = {};
+        //组装排序参数
+        param.contenttime = $("#contenttime-search").val();//查询条件
+        //组装分页参数
+        param.start = data.start;
+        param.length = data.length;
+        param.draw = data.draw;
+        return param;
+    }
+    
+    function openById(id){
+    	 $.ajax({
+            type: "GET",
+            url: 'comment/getComment',
+            cache : false,  //禁用缓存
+            data: {id:id},    //传入已封装的参数
+            dataType: "json",
+            success: function(data) {
+                if(data!=null && data!=""){
+                	document.getElementById('openname').innerHTML = data.name;
+                	document.getElementById('opencontent').innerHTML = data.content;
+                	document.getElementById('opencontenttime').innerHTML = data.contenttime;
+                }
+                
+            }
+        }); 
+    	
+    	$('#openbox').modal();
+    }
+   
+</script>
+
+</body>
+</html>

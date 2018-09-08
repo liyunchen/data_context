@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>B_Booking-搜搜</title>
+		<link th:href="@{/css/whir_common.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/whir_style.css}" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" th:src="@{/js/jquery-1.7.2.min.js}"></script> 
+	</head>
+	<body class="body">
+	<!--头部-->
+	<div id="header">
+	  <div class="top">
+	    <div class="topmain">
+	      <div class="searchbox">
+	        <div class="so_so">
+	          <div class="logo"><a href="#" title="目课网"><img th:src="@{/images/logo.jpg}"  width="230px"  height="100px"></a></div>
+	          <div class="mk_so">
+	            <input type="text" class="input"  name=""/>
+	            <input type="image" th:src="@{/images/btn.jpg}" class="btn" />
+	          </div>
+	        </div>
+	        <div class="topmenu">
+	          <div class="xsyd"><ul><li class="li5"><a href="#">小店入驻</a></li></ul></div>
+	          <div class="hylist">
+	            <ul>
+	              <li class="li1"><a href="myself">admin</a></li>
+	              <li class="li2"><a href="javascript:void(0);" onclick="showA();">注册</a>/<a href="javascript:void(0);" onclick="showB();">登陆</a></li>
+	              <li class="li3"><a href="#">小程序</a></li>
+	              <li class="li4"><a href="#">联系我们</a></li>
+	            </ul>
+	          </div>
+			  				  <!--注册登录隐藏--->
+		  <div id="pop" class="pop" style="display:none"> 
+	<div class="pop_head"><a href="javascript:void(0);" onclick="hideA()">关闭</a></div> 
+	<div class="pop_body">
+	<h1>用户注册</h1>
+	<div class="zhuce">
+	<input type="text" class="inputl" value="请输入真实邮箱" onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入真实邮箱';}" />
+	<input type="text" class="inputr" value="请输入用户名" onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入用户名';}" />
+	<input type="password" class="inputb" value="请输入密码" onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入密码';}" />
+	<div class="dlk"><a href="#" class="regist">注册</a><a href="#" class="login">返回登录</a></div>
+	</div>
+	</div> 
+	</div> 
+	
+	<div id="pop1" class="pop1" style="display:none"> 
+	<div class="pop_head1"><a href="javascript:void(expression);" onclick="hideB()">关闭</a></div> 
+	<div class="pop_body1">
+	<h1>用户登陆</h1>
+	<div class="zhuce">
+	<input type="text" class="inputr" value="请输入用户名"  onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入用户名';}"/>
+	<input type="password" class="inputb" value="请输入密码" onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入密码';}" />
+	<div class="dlk"><a href="#" class="regist">登陆</a><a href="#" class="login">注册</a></div>
+	</div>
+	</div> 
+	</div>
+	
+	        </div>
+	      </div>
+	      <!--菜单导航-->
+	      <div class="topnavmenu">
+	        <div class="nav">
+	          <ul>
+	            <li><a href="index" class="on">首页</a></li>
+	            <li><a href="ss">新店特惠</a></li>
+				<li><a href="ss">附件好券</a></li>
+	            <li><a href="ss">自助餐</a></li>
+	            <li><a href="ss">火锅</a></li>
+	            <li><a href="ss">小吃快餐</a></li>
+	            <li><a href="ss">甜点饮品</a></li>
+				<li><a href="ss">预约订座</a></li>
+	          </ul>
+	        </div>
+	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="clear"></div>
+	<!--container-->
+	<div id="container">
+	<div class="left958">
+	<div class="kssearch1">
+	
+	
+	
+	<div class="address">
+	<h1>搜热词</h1>
+	     <h2><span>全部</span>
+		       <a href="#">甜点饮品</a><a href="#">生日蛋糕</a><a href="#">火锅</a><a href="#">自助餐</a>
+			   <a href="#">小吃快餐</a><a href="#">日韩料理</a><a href="#">西餐</a><a href="#">聚餐宴请</a>
+			   <a href="#">烧烤烤肉</a><a href="#">大闸蟹</a><a href="#">川湘菜</a><a href="#">江浙菜</a>
+			   <a href="#">香锅烤鱼</a><a href="#">小龙虾</a><a href="#">粤菜</a><a href="#">东北菜</a>
+			   <a href="#">咖啡酒吧</a><a href="#">北京菜</a>
+	     </h2>
+	</div>
+	
+	</div>
+	<div class="kssearchbox1">
+	<span class="sspx">排序</span>
+	<div class="SelectBox">
+	 <span class="SelectText">智能排序</span>
+	 <dl class="SelectList">
+	     <dt><a href="javascript:void(0)">距离</a></dt>
+	     <dt><a href="javascript:void(0)">人气</a></dt>
+	    
+	 </dl>
+	</div>
+	<div class="SelectBox1">
+	 <span class="SelectText1">筛选</span>
+	 <dl class="SelectList1">
+	     <dt><a href="javascript:void(0)">有座</a></dt>
+	     <dt><a href="javascript:void(0)">附近</a></dt>
+	 </dl>
+	</div>
+	<script type="text/javascript">
+	  $(".SelectBox").each(function(){
+			$(this).find(".SelectText").click(function(){
+				 var SelectListStatis = $(this).next(".SelectList").css("display");
+				 if(SelectListStatis == "none"){
+						$(this).next(".SelectList").show();
+					 }
+				 else{
+						$(this).next(".SelectList").hide();
+					 }
+			 });
+			 $(this).find(".SelectList").children("dt").click(function(){
+					 var Value = $(this).find("a").text();
+					 $(this).parents(".SelectList").prev(".SelectText").text(Value);
+					 $(this).parents(".SelectList").hide();
+				 });
+			 $(this).mouseleave(function(){ $(this).find(".SelectList").hide(); });
+		});
+	</script>
+	<script type="text/javascript">
+	  $(".SelectBox1").each(function(){
+			$(this).find(".SelectText1").click(function(){
+				 var SelectListStatis = $(this).next(".SelectList1").css("display");
+				 if(SelectListStatis == "none"){
+						$(this).next(".SelectList1").show();
+					 }
+				 else{
+						$(this).next(".SelectList1").hide();
+					 }
+			 });
+			 $(this).find(".SelectList1").children("dt").click(function(){
+					 var Value = $(this).find("a").text();
+					 $(this).parents(".SelectList1").prev(".SelectText1").text(Value);
+					 $(this).parents(".SelectList1").hide();
+				 });
+			 $(this).mouseleave(function(){ $(this).find(".SelectList1").hide(); });
+		});
+	</script>
+	<div class="wdss"><input type="text" class="input1" /><input type="image" th:src="@{/images/search.jpg}"  class="btn1"/></div>
+	<span class="ssjg">共1200个筛选结果</span><div class="page1"><span class="num"><font class="f_blue">1</font>/41</span><span class="prev">上一页</span><span class="next"><a href="#">下一页</a></span> </div>
+	</div>
+	
+	        
+	        <div class="splist">
+	          
+	          
+	          <div class="myvideo">
+	            <div class="myvideoimg"><img th:src="@{/pic/pic1.jpg}" />
+	              <h3><a href="shopss">美食城</a></h3>
+	              <span class="play1"></span></div>
+	            <div class="title3">
+	              <div class="jiage"><a href="shopss">有座</a></div>
+	              <div class="playtime"><a href="shopss">地点：大兴区</a> | <a href="shopss">小吃快餐</a></div>
+	            </div>
+	          </div>
+			  <div class="myvideo">
+	            <div class="myvideoimg"><img th:src="@{/pic/pic2.jpg}" />
+	              <h3><a href="shopss">美食城</a></h3>
+	              <span class="play1"></span></div>
+	            <div class="title3">
+	              <div class="jiage"><a href="shopss">有座</a></div>
+	              <div class="playtime"><a href="shopss">地点：大兴区</a> | <a href="shopss">小吃快餐</a></div>
+	            </div>
+	          </div>
+			  <div class="myvideo">
+	            <div class="myvideoimg"><img th:src="@{/pic/pic3.jpg}" />
+	              <h3><a href="shopss">美食城</a></h3>
+	              <span class="play1"></span></div>
+	            <div class="title3">
+	              <div class="jiage"><a href="shopss">有座</a></div>
+	              <div class="playtime"><a href="shopss">地点：大兴区</a> | <a href="shopss">小吃快餐</a></div>
+	            </div>
+	          </div>
+			  <div class="myvideo">
+	            <div class="myvideoimg"><img th:src="@{/pic/pic4.jpg}" />
+	              <h3><a href="shopss">美食城</a></h3>
+	              <span class="play1"></span></div>
+	            <div class="title3">
+	              <div class="jiage"><a href="shopss">有座</a></div>
+	              <div class="playtime"><a href="shopss">地点：大兴区</a> | <a href="shopss">小吃快餐</a></div>
+	            </div>
+	          </div>
+			  <div class="myvideo">
+	            <div class="myvideoimg"><img th:src="@{/pic/pic5.jpg}" />
+	              <h3><a href="shopss">美食城</a></h3>
+	              <span class="play1"></span></div>
+	            <div class="title3">
+	              <div class="jiage"><a href="shopss">有座</a></div>
+	              <div class="playtime"><a href="shopss">地点：大兴区</a> | <a href="shopss">小吃快餐</a></div>
+	            </div>
+	          </div>
+	         
+			  
+	       
+			  
+	      </div>
+		  <div class="page"><span class="prev">上一页</span><span class="num"><a href="#" class="on">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a></span><span class="next"><a href="#">下一页</a></span><em>217/5</em>转到
+	        <input name="textfield" type="text" value="5" class="inputpage"/>
+	        页
+	        <input type="submit" name="Submit" value="GO" class="btngo"/>
+	      </div>
+	</div>
+	<div class="right213">
+	<div class="title"><h1>推荐小店</h1></div>
+	<div class="likelist">
+	        <div class="likevideo">
+	          <div class="videoimg"><img th:src="@{/pic/pic1.jpg}" /><span class="time">有座</span></div>
+	          <div class="videotitle"><a href="shopss" target="_blank">美食城</a></div>
+	          <div class="videoinfo"><a href="shopss" class="zxbf">地点:大兴区</a>| <a href="shopss">小吃快餐</a></div>
+	        </div>
+	        <div class="likevideo">
+	          <div class="videoimg"><img th:src="@{/pic/pic2.jpg}" /><span class="time">有座</span></div>
+	          <div class="videotitle"><a href="shopss" target="_blank">美食城</a></div>
+	          <div class="videoinfo"><a href="shopss" class="zxbf">地点:大兴区</a>| <a href="shopss">小吃快餐</a></div>
+	        </div>
+			<div class="likevideo">
+	          <div class="videoimg"><img th:src="@{/pic/pic3.jpg}" /><span class="time">有座</span></div>
+	          <div class="videotitle"><a href="shopss" target="_blank">美食城</a></div>
+	          <div class="videoinfo"><a href="shopss" class="zxbf">地点:大兴区</a>| <a href="shopss">小吃快餐</a></div>
+	        </div>
+			<div class="likevideo">
+	          <div class="videoimg"><img th:src="@{/pic/pic4.jpg}" /><span class="time">有座</span></div>
+	          <div class="videotitle"><a href="shopss" target="_blank">美食城</a></div>
+	          <div class="videoinfo"><a href="shopss" class="zxbf">地点:大兴区</a>| <a href="shopss">小吃快餐</a></div>
+	        </div>
+			<div class="likevideo">
+	          <div class="videoimg"><img th:src="@{/pic/pic5.jpg}" /><span class="time">有座</span></div>
+	          <div class="videotitle"><a href="shopss" target="_blank">美食城</a></div>
+	          <div class="videoinfo"><a href="shopss" class="zxbf">地点:大兴区</a>| <a href="shopss">小吃快餐</a></div>
+	        </div>
+	      </div>
+	</div>
+	</div>
+	<div class="clear"></div>
+	<div id="footer">
+	  <div class="copyright">
+	    <div class="Navigation"><a href="#">关于目课</a><a href="#">合作伙伴</a><a href="#">营销中心</a><a href="#">廉正举报</a><a href="#">联系客服</a><a href="#">开放平台</a><a href="#">诚征英才</a><a href="#">联系我们</a><a href="#">网站地图</a><a href="#">法律声明</a></div>
+	    <div class="copy">Copyright © 2014 MYCLASS.C0M. All Rights Reserved. Designed by:<a href="http://www.wanhu.cn">Wanhu</a><br />
+	      目课网 版权所有 目课网经营许可证<br />
+	    </div>
+	  </div>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,119 @@
+<!--top-Header-menu-->
+<div  th:fragment="top">
+
+<div id="user-nav" class="navbar navbar-inverse"  style="float:right;width:300px;"  >
+    <ul class="nav"   >
+        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text"  id="loginname">Welcome User</span></a>
+        </li>
+       
+        <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span  onclick="openshop();"  class="text">店铺信息</span></a></li>
+        <li class=""><a href="/logout"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+    </ul>
+</div>
+<!--start-top-serch-->
+<!-- <div id="search">
+    <input type="text" placeholder="Search here..."/>
+    <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+</div> -->
+<!--close-top-serch-->
+<!--添加店铺弹框-->
+<div class="modal fade" id="addshop" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">店铺信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="shopForm">
+                    <input type="hidden" name="id"  id="shopid">
+                    <div class="form-group">
+                        <label class="control-label">店铺名称:</label>
+                        <input type="text" class="form-control" name="name" id="shopname" placeholder="请输入店铺名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">店铺简介:</label>
+                        <input type="text" class="form-control" name="introduction" id="shopintroduction" placeholder="请输入店铺简介"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">地址:</label>
+                        <input type="text" class="form-control" name="address" id="shopaddress" placeholder="请输入地址"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">联系电话:</label>
+                        <input type="text" class="form-control" name="phone" id="shopphone" placeholder="请输入联系电话"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">店铺图片:</label>
+                        <input type="text" class="form-control" name="pic" id="shoppic" placeholder="请输入店铺图片"/>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" onclick="addshop();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/添加店铺弹框-->
+<script type="text/javascript">
+window.onload = function(){
+	  $.ajax({
+		async:false,
+      type: "get",
+      url:'/getlogin',
+      success: function(data) {
+    	  if(data.username!=null  && data.username!="" ){
+    		  document.getElementById("loginname").innerText  =data.username;;
+    	  }
+      }
+  });
+}
+function openshop(){
+	$.ajax({
+        async:false,
+        type : "get",
+        url: "/shop/getshop",
+        dataType:'json',
+        success: function(data){
+        
+     	   if(data!=null && data!=""){
+     		    $("#shopid").val(data.id);
+                $("#shopname").val(data.name);
+                $("#shopintroduction").val(data.introduction);
+                $("#shopaddress").val(data.address);
+                $("#shopphone").val(data.phone);
+                $("#shoppic").val(data.pic);
+                  
+     	   }
+     	  $('#addshop').modal();
+           
+        }
+    });
+	
+}
+function addshop(){
+	$.ajax({
+        cache: true,
+        type: "POST",
+        url:'shop/addshop',
+        data:$('#shopForm').serialize(),// 你的formid
+        async: false,
+        success: function(data) {
+            if(data=="ok"){
+                  layer.msg('保存成功');
+         	      $('#addshop').modal('hide');
+                
+            }else{
+                layer.msg('保存失败');
+                //$('#addUser').modal('hide');
+            }
+        }
+    });
+}
+</script>
+<!--sidebar-menu-->
+</div>

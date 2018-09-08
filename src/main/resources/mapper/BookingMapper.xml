@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chenlove.mapper.BookingMapper">
+  <resultMap id="BaseResultMap" type="cn.chenlove.model.Booking">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="shopid" jdbcType="VARCHAR" property="shopid" />
+    <result column="seatid" jdbcType="VARCHAR" property="seatid" />
+    <result column="customerid" jdbcType="VARCHAR" property="customerid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="starttime" jdbcType="VARCHAR" property="starttime" />
+    <result column="endtime" jdbcType="VARCHAR" property="endtime" />
+  </resultMap>
+  
+  <select id="getAllBooking"  parameterType="cn.chenlove.model.Comment"  resultMap="BaseResultMap">
+        select b.id,b.shopid,s.name  as seatid,b.customerid,c.name,c.phone,b.starttime,b.endtime 
+        from booking b 
+        join customer c  on c.id=b.customerid 
+        join seat s on s.id = b.seatid
+        
+        where 1=1 
+	    <if test="starttime != '' and starttime != null">  
+             and b.starttime  like  '%' #{starttime} '%' 
+        </if>
+        <if test="endtime != '' and endtime != null">  
+             and b.endtime  like  '%' #{endtime} '%' 
+        </if>
+        
+  </select>
+</mapper>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+   <div >
+  
+      <table  border=2  width="100%" >
+          <tr>
+             <th>队员1</th>
+             <th>手机</th>
+             <th>队员2</th>
+             <th>手机</th>        
+             <th>队员3</th>
+             <th>手机</th>
+             <th>队员4</th>
+             <th>手机</th>
+             <th>队员5</th>
+             <th>手机</th>
+             <th>队员6</th>
+             <th>手机</th>
+             <th>操作</th>
+           </tr>
+           <tr th:each="member : ${memlist}">
+             <td th:text="${member.name1}"></td>
+             <td th:text="${member.phone1}"></td>
+             <td th:text="${member.name2}"></td>
+             <td th:text="${member.phone2}"></td>
+             <td th:text="${member.name3}"></td>
+             <td th:text="${member.phone3}"></td>
+             <td th:text="${member.name4}"></td>
+             <td th:text="${member.phone4}"></td>
+             <td th:text="${member.name5}"></td>
+             <td th:text="${member.phone5}"></td>
+             <td th:text="${member.name6}"></td>
+             <td th:text="${member.phone6}"></td>
+             
+             <td >
+                <input type="button"   th:onclick="'updatemem(\''+${member.id}+'\')' "  value="修改"/>
+                <input type="button" th:onclick="'delmem(\''+${member.id}+'\')' "  value="删除"/>
+             </td>
+           </tr>
+           <tr>
+             <td><a  href="member">添加</a></td>
+           </tr>
+      </table>
+   </div>
+   <!--修改弹框-->
+<div class="modal fade" id="addmem" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">修改信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="memForm">
+                    <input type="hidden" id="id" class="id" name="id">
+                    <div class="form-group">
+                        <label class="control-label">队员1姓名:</label>
+                        <input type="text" class="form-control" name="name1" id="name1" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone1" id="phone1" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员2姓名:</label>
+                        <input type="text" class="form-control" name="name2" id="name2" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone2" id="phone2" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员3姓名:</label>
+                        <input type="text" class="form-control" name="name3" id="name3" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone3" id="phone3" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员4姓名:</label>
+                        <input type="text" class="form-control" name="name4" id="name4" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone4" id="phone4" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员5姓名:</label>
+                        <input type="text" class="form-control" name="name5" id="name5" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone5" id="phone5" placeholder="请输入手机"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">队员6姓名:</label>
+                        <input type="text" class="form-control" name="name6" id="name6" placeholder="请输入姓名"/>
+                        <label class="control-label">手机:</label>
+                        <input type="text" class="form-control" name="phone6" id="phone6" placeholder="请输入手机"/>
+                    </div>
+                   
+                </form>
+            </div>
+   
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" onclick="addmem();" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+   <!--end-Footer-part-->
+	<script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/js/layer.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.ztree.core.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.ztree.excheck.js}"></script>
+   <script>
+       //更新信息
+       function addmem(){
+    	   $.ajax({
+    		   async:false,
+               type: "post",
+               url:'/mem/updatemem',
+               data:$('#memForm').serialize(),// 你的formid
+               success: function(data) {
+                   if(data=="Ok"){
+                       layer.msg('修改成功');
+                       window.location.reload();
+                       $('#addmem').modal('hide');
+                   }else{
+                       layer.msg('修改失败');
+                       $('#addmem').modal('hide');
+                   }
+               }
+           });
+       }
+       //去更新页面
+       function updatemem(id){
+    	    $.ajax({
+                async:false,
+                type : "get",
+                data:{id:id},
+                url: "/mem/getonemem",
+                dataType:'json',
+                success: function(data){
+                    $("#id").val(data.id);
+                    $("#name1").val(data.name1);
+                    $("#phone1").val(data.phone1);
+                    $("#name2").val(data.name2);
+                    $("#phone2").val(data.phone2);
+                    $("#name3").val(data.name3);
+                    $("#phone3").val(data.phone3);
+                    $("#name4").val(data.name4);
+                    $("#phone4").val(data.phone4);
+                    $("#name5").val(data.name5);
+                    $("#phone5").val(data.phone5);
+                    $("#name6").val(data.name6);
+                    $("#phone6").val(data.phone6);
+                	$('#addmem').modal();
+                }
+            });
+       }
+       //删除
+       function delmem(id){
+    	   layer.confirm('您确定要删除信息吗？', {
+               btn: ['确认','取消'] //按钮
+           }, function(){
+               $.ajax({
+                   cache: true,
+                   type: "POST",
+                   url:'/mem/del',
+                   data:{id:id},
+                   async: false,
+                   success: function(data) {
+                       if(data=="Ok"){
+                           layer.msg('删除成功');
+                           window.location.reload();
+                       }else{
+                           layer.msg('删除失败');
+                       }
+                   }
+               });
+           });
+       }
+   </script>
+</body>
+</html>
