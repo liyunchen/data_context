@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>cn.chenlove</groupId>
-	<artifactId>mbs_cxb</artifactId>
+	<artifactId>data_context</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mbs_cxb</name>
+	<name>data_context</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
