@@ -1,5 +1,7 @@
 package cn.chenlove.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 
 import cn.chenlove.model.Dishes;
@@ -15,5 +17,8 @@ public interface DishesService   extends IService<Dishes> {
 	PageInfo<Dishes> selectDishesByPage(Dishes dishes, int start, int length);
 	//删除
 	String delDishes(String id);
+	
+	List<Dishes> getDishesList();
 
+	List<Dishes> getByType(String type);
 }

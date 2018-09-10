@@ -11,7 +11,13 @@
     <result column="pic" jdbcType="VARCHAR" property="pic" />
     <result column="recommend" jdbcType="INTEGER" property="recommend" />
     <result column="enable" jdbcType="INTEGER" property="enable" />
+    <result column="price" jdbcType="REAL" property="price" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
   </resultMap>
+  <select id="getByType"  parameterType="String" resultMap="BaseResultMap">
+      select id,name,type,pic,recommend,price,sort,introduction
+      from dishes
+      where type=#{type} and enable=1
+  </select>
 </mapper>

@@ -25,6 +25,7 @@ public interface BookingService   extends IService<Booking> {
 	String delMenu(String id);
 	List<Menu> getMenuList();*/
 	String delBooking(String id);
+	List<Booking> getbooking();
 
 	//List<Seat> getAllSeat(int cell);
 

@@ -8,4 +8,14 @@
     <result column="shop_id" jdbcType="VARCHAR" property="shopId" />
     <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
   </resultMap>
+  <select id="selectByMenuid"  parameterType="String" resultMap="BaseResultMap">
+    select shop_id,menu_id 
+    from shop_menu 
+    where menu_id=#{id};
+  </select>
+  <select id="getShopMenuByid"  parameterType="String" resultMap="BaseResultMap">
+    select shop_id,menu_id 
+    from shop_menu 
+    where shop_id=#{id};
+  </select>
 </mapper>

@@ -1,13 +1,17 @@
 package cn.chenlove.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import cn.chenlove.mapper.ShopMapper;
+import cn.chenlove.mapper.ShopMenuMapper;
 import cn.chenlove.mapper.UserShopMapper;
 import cn.chenlove.model.Shop;
+import cn.chenlove.model.ShopMenu;
 import cn.chenlove.model.User;
 import cn.chenlove.model.UserShop;
 import cn.chenlove.service.ShopService;
@@ -19,6 +23,8 @@ public class ShopServiceImpl extends BaseService<Shop> implements ShopService {
 	private ShopMapper shopMapper;
 	@Resource
 	private UserShopMapper userShopMapper;
+	@Resource
+	private ShopMenuMapper shopMenuMapper;
 	
 	//添加
 	public void addshop(Shop shop) {
@@ -48,6 +54,22 @@ public class ShopServiceImpl extends BaseService<Shop> implements ShopService {
 	public void updateshop(Shop shop) {
 		shopMapper.updateByPrimaryKey(shop);
 		
+	}
+
+	@Override
+	public List<Shop> getShopList() {
+		// TODO Auto-generated method stub
+		return shopMapper.selectAll();
+	}
+
+	@Override
+	public Shop getshopbyid(String id) {
+		ShopMenu shopMenu = shopMenuMapper.selectByMenuid(id);
+	    if(shopMenu!=null && !shopMenu.getShopId().equals("")){
+	    	Shop shop = shopMapper.selectByPrimaryKey(shopMenu.getShopId());
+	    	return shop;
+	    }
+	    return null;
 	}
 
 }

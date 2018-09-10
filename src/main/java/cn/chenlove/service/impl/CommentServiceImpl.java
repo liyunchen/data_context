@@ -82,6 +82,12 @@ public class CommentServiceImpl extends BaseService<Comment> implements CommentS
 		return null;
 	}
 
+	@Override
+	public List<Comment> getnearbycomment() {
+		// TODO Auto-generated method stub
+		return commentMapper.getnearbycomment();
+	}
+
 	
 
 	

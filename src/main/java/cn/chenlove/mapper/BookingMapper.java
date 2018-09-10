@@ -8,4 +8,6 @@ import cn.chenlove.util.MyMapper;
 public interface BookingMapper extends MyMapper<Booking> {
 
 	List<Booking> getAllBooking(Booking booking);
+	
+	List<Booking> selectAllBooking();
 }

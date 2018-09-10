@@ -30,4 +30,13 @@
         </if>
         
   </select>
+  <select id="selectAllBooking"   resultMap="BaseResultMap">
+        select s.name as shopid,c.name as customerid ,ss.name  as seatid,b.starttime,b.endtime 
+        from booking b 
+        join shop s     on b.shopid=s.id 
+        join customer c on b.customerid = c.id
+        join seat ss    on b.seatid = ss.id
+        where 1=1 
+
+  </select>
 </mapper>

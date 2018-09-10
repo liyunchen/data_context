@@ -29,6 +29,8 @@ public interface CommentService   extends IService<Comment> {
 
 	Comment getComment(String id);
 
+	List<Comment> getnearbycomment();
+
 	//List<Seat> getAllSeat(int cell);
 
 }

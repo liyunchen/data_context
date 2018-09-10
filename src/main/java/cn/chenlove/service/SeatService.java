@@ -24,4 +24,6 @@ public interface SeatService   extends IService<Seat> {
 
 	List<Seat> getAllSeat(int cell);
 
+	String selectseat(String[] selects, String start, String end, int cell);
+
 }

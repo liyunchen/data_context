@@ -88,6 +88,12 @@ public class SeatServiceImpl extends BaseService<Seat> implements SeatService {
 		return null;
 	}
 
+	@Override
+	public String selectseat(String[] selects, String start, String end, int cell) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/*@Resource
 	private MenuMapper menuMapper;
 	@Resource

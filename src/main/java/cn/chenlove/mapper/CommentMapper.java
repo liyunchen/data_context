@@ -10,6 +10,8 @@ public interface CommentMapper extends MyMapper<Comment> {
 	List<Comment> getAllComment(Comment comment);
 
 	Comment getComment(String id);
+
+	List<Comment> getnearbycomment();
 	
 	
 }

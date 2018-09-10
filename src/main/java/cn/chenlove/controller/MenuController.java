@@ -1,7 +1,9 @@
 package cn.chenlove.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -14,7 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 
+import cn.chenlove.mapper.ShopMenuMapper;
+import cn.chenlove.model.Dishes;
 import cn.chenlove.model.Menu;
+import cn.chenlove.model.ShopMenu;
+import cn.chenlove.service.DishesService;
 import cn.chenlove.service.MenuService;
 
 @Controller
@@ -23,6 +29,10 @@ public class MenuController {
        
 	@Resource
 	private  MenuService menuService;
+	@Resource
+	private ShopMenuMapper shopMenuMapper;
+	@Resource
+	private DishesService dishesService;
 	
 	
 	//列表查询
@@ -69,5 +79,39 @@ public class MenuController {
 	public String delMenu(String id) {
 		String string = menuService.delMenu(id);
 		return string;
+	}
+	
+	//获取所有的菜品
+	@RequestMapping(value="/getmenuList")
+	@ResponseBody
+	public List<Menu> getmenuList(String id) {
+		List<ShopMenu> shopMenuList = shopMenuMapper.getShopMenuByid(id);
+		if(shopMenuList!=null && shopMenuList.size()>0) {
+			List<Menu>  list = new ArrayList<Menu>();
+            for(ShopMenu shopMenu:shopMenuList) {
+            	Menu menu= menuService.getMenu(shopMenu.getMenuId());
+            	list.add(menu);
+            }
+            return list;
+		}
+		return null;
+	}
+	@RequestMapping(value="/getdishesList")
+	@ResponseBody
+	public List<Dishes> getdishesList(String id) {
+		List<ShopMenu> shopMenuList = shopMenuMapper.getShopMenuByid(id);
+		if(shopMenuList!=null && shopMenuList.size()>0) {
+			List<Dishes>  list = new ArrayList<Dishes>();
+            for(ShopMenu shopMenu:shopMenuList) {
+            	List<Dishes> disheslist= dishesService.getByType(shopMenu.getMenuId());
+            	if(disheslist!=null && disheslist.size()>0) {
+            		for(Dishes dishes:disheslist) {
+            			list.add(dishes);
+            		}	
+            	}
+            }
+            return list;
+		}
+		return null;
 	}
 }

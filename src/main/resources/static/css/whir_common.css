@@ -54,13 +54,13 @@ a:hover {color:#2f9def; text-decoration:none;}
 .topmenu .xsyd{ width:303px; height:35px; background:url(../images/xsyd.jpg) right no-repeat; text-align:right; margin-top:10px;}
 .topmenu .xsyd a{ font-family:"微软雅黑"; font-size:14px; color:#383838; font-weight:bold; line-height:35px; padding-right:45px;}
 .topmenu .xsyd a:hover{ color:#3aa9e1;}
-.hylist{ height:28px; margin-top:15px;width:300px;float:right; font-family:"微软雅黑"; font-size:13px;}
+.hylist{ height:28px; margin-top:15px;width:329px;float:right; font-family:"微软雅黑"; font-size:13px;}
 .hylist li{ float:left; width:auto;display:block; line-height:28px;}
-.hylist li.li1{ width:auto; background:url(../images/icon.jpg) left center no-repeat; float:left; padding-left:20px;}
-.hylist li.li2{ width:65px; background:url(../images/icon1.jpg) left center no-repeat; float:left; padding-left:25px;}
+.hylist li.li1{ background:url(../images/icon.jpg) left center no-repeat; float:left; padding-left:20px;}
+.hylist li.li2{  background:url(../images/icon1.jpg) left center no-repeat; float:left; padding-left:25px;}
 .hylist li.li2 a{ color:#3aa9e0;}
-.hylist li.li3{ width:60px; background:url(../images/icon2.jpg) left center no-repeat; float:left; padding-left:20px;}
-.hylist li.li4{ width:60px; background:url(../images/icon3.jpg) left center no-repeat; float:left; padding-left:20px;}
+.hylist li.li3{  background:url(../images/icon2.jpg) left center no-repeat; float:left; padding-left:20px;}
+.hylist li.li4{  background:url(../images/icon3.jpg) left center no-repeat; float:left; padding-left:20px;}
 .hylist li.lion{ float:left;}
 .hylist li.lion a.hyimg img{ display:block; -moz-border-radius:50px; -webkit-border-radius:50px; float:left;}
 

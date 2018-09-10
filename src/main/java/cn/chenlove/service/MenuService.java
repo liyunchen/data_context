@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.pagehelper.PageInfo;
 
+import cn.chenlove.model.Dishes;
 import cn.chenlove.model.Menu;
 
 public interface MenuService   extends IService<Menu> {
@@ -18,5 +19,6 @@ public interface MenuService   extends IService<Menu> {
 	//删除
 	String delMenu(String id);
 	List<Menu> getMenuList();
+	
 
 }

@@ -20,13 +20,22 @@ public class Dishes {
     private Integer sort;
 
     private String introduction;
+    
+    private Float price;
 
     @Override
 	public String toString() {
 		return "Dishes [id=" + id + ", name=" + name + ", type=" + type + ", pic=" + pic + ", recommend=" + recommend
-				+ ", enable=" + enable + ", sort=" + sort + ", introduction=" + introduction + "]";
+				+ ", enable=" + enable + ", sort=" + sort + ", introduction=" + introduction + ", price=" + price + "]";
 	}
 
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
+	}
 	/**
      * @return id
      */

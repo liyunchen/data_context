@@ -74,6 +74,12 @@ public class BookingServiceImpl extends BaseService<Booking> implements BookingS
 		return null;
 	}
 
+	@Override
+	public List<Booking> getbooking() {
+		// TODO Auto-generated method stub
+		return bookingMapper.selectAllBooking();
+	}
+
 	
 
 }

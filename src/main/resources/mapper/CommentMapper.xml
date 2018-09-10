@@ -30,4 +30,14 @@
 	     
         
   </select>
+  
+  <select id="getnearbycomment"  resultMap="BaseResultMap">
+        select  c.id,s.name as shopid,cc.name as customerid ,c.name,c.content,c.contenttime  
+        from comment c 
+        join shop s     on c.shopid=s.id 
+        join customer cc on c.customerid = cc.id
+        where 1=1 
+	     
+        
+  </select>
 </mapper>

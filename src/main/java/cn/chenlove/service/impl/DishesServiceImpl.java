@@ -92,5 +92,17 @@ public class DishesServiceImpl extends BaseService<Dishes> implements DishesServ
 	    
 	}
 
+	@Override
+	public List<Dishes> getDishesList() {
+		// TODO Auto-generated method stub
+		return dishesMapper.selectAll();
+	}
+
+	@Override
+	public List<Dishes> getByType(String type) {
+		
+		return dishesMapper.getByType(type);
+	}
+
 
 }

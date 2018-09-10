@@ -34,9 +34,9 @@ public class SeatController {
 	public String  addseat(HttpServletRequest request,String[] selects,int cell){
 		String string="";
 		if(selects!=null) {
-			for(String s :selects) {
-				System.err.println(s);
-			}
+			//for(String s :selects) {
+			//	System.err.println(s);
+			//}
 			string= seatService.addseat(selects,cell);	
 		}
 		
@@ -50,6 +50,23 @@ public class SeatController {
 	public List<Seat>  getAllSeat(int cell){
 		List<Seat> list = seatService.getAllSeat(cell);	
 		return list;
+	}
+	
+	//预约座位
+	@ResponseBody
+	@RequestMapping(value="/selectseat")
+	public String  selectseat(HttpServletRequest request,String[] selects,String start,String end,int cell){
+		String string="";
+		if(selects!=null) {
+			//for(String s :selects) {
+			//	System.err.println(s);
+			//}
+			string= seatService.selectseat(selects,start,end,cell);	
+		}
+		
+		
+		
+		return string;
 	}
 	
 	//列表查询

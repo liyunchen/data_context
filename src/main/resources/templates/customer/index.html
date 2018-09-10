@@ -7,6 +7,7 @@
 <link th:href="@{/css/whir_home.css}" rel="stylesheet" type="text/css" />
 <script type="text/javascript" th:src="@{/js/jquery1.42.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery.SuperSlide.2.1.1.js}"></script>
+
 <script  type="text/javascript">
         window.moveTo(-4,-4);
         window.resizeTo(screen.availWidth,screen.availHeight);
@@ -116,16 +117,7 @@
     <div id="ifocus">
       <div style="overflow:hidden" id="ifocus_pic">
         <div style="overflow:hidden; top: 0px; left: 0px" id="ifocus_piclist">
-          <ul>
-            <!--大图_start -->
-            <li><a href="#" target=_blank><img border=0  th:src="@{/pic/pic1.jpg}"></a> </li>
-            <li><a href="#" target=_blank><img border=0  th:src="@{/pic/pic2.jpg}"></a> </li>
-            <li><a href="#" target=_blank><img border=0  th:src="@{/pic/pic3.jpg}"></a> </li>
-            <li><a href="#" target=_blank><img border=0  th:src="@{/pic/pic4.jpg}"></a> </li>
-            <li><a href="#" target=_blank><img border=0  th:src="@{/pic/pic5.jpg}"></a>
-              <!--大图_end -->
-            </li>
-          </ul>
+         <!-- 显示大图 -->
         </div>
         <div id="ifocus_opdiv"></div>
         <div id="ifocus_tx">
@@ -141,27 +133,12 @@
           </ul>
         </div>
         <div id="ifocus_btn">
-          <!--小图_start -->
-          <ul>
-            <li class="current"><img border=0 alt=目课网   th:src="@{/pic/pic1.jpg}"> </li>
-            <li class="normal"><img border=0 alt=目课网    th:src="@{/pic/pic2.jpg}"> </li>
-            <li class="normal"><img border=0 alt=目课网    th:src="@{/pic/pic3.jpg}"> </li>
-            <li class="normal"><img border=0 alt=目课网    th:src="@{/pic/pic4.jpg}"> </li>
-            <li class="normal"><img border=0 alt=目课网    th:src="@{/pic/pic5.jpg}"></li>
-          </ul>
-          <!--小图_end -->
+         <!-- 显示小图 -->
         </div>
       </div>
     </div>
   </div>
  </div>
-
-
-<!--轮播图-start-->
-
-
-<!--轮播图-end-->
-
 
 <!--猜你喜欢 and 用户登录-->
 <div class="column">
@@ -171,48 +148,18 @@
       <div class="title">
         <h1>猜你喜欢</h1>
         <h2 id="one1" onmouseover="setTab('one',1,2)" class="hover"><a href="">收藏小店</a></h2>
-        <h2 id="one2" onmouseover="setTab('one',2,2)"><a href="#">预约记录</a></h2>
-        <div class="change"><a href="#">换一组</a></div>
+        <h2 id="one2" onmouseover="setTab('one',2,2)"><a href="">预约记录</a></h2>
+        <div class="change"><a href="">换一组</a></div>
       </div>
+      <!-- 收藏小店 -->
       <div class="likelist" id="con_one_1">
-        <div class="likevideo fl">
-          <div class="videoimg"><img th:src="@{/images/pic1.jpg}" /><span class="time">07:20</span></div>
-          <div class="videotitle"><a href="" target="_blank">【TED】外表不是全部</a></div>
-          <div class="videoinfo"><a href="">74,308次播放</a> | <a href="">1,629次评论</a></div>
-        </div>
-       
-        <div class="likevideo fl ml20">
-          <div class="videoimg"><img th:src="@{/images/pic1.jpg}" /><span class="time">07:20</span></div>
-          <div class="videotitle"><a href="" target="_blank">【TED】外表不是全部</a></div>
-          <div class="videoinfo"><a href="">74,308次播放</a> | <a href="#">1,629次评论</a></div>
-        </div>
-        <div class="likevideo fl ml20">
-          <div class="videoimg"><img th:src="@{/images/pic1.jpg}" /><span class="time">07:20</span></div>
-          <div class="videotitle"><a href="" target="_blank">【TED】外表不是全部</a></div>
-          <div class="videoinfo"><a href="">74,308次播放</a> | <a href="">1,629次评论</a></div>
-        </div>
+           <!-- 内容 -->
       </div>
+      <!-- 预约记录 -->
       <div class="likelist" id="con_one_2" style="display:none">
-       
-        <div class="likevideo fl ml20">
-          <div class="videoimg"><img th:src="@{/images/pic1.jpg}" /><span class="time">07:20</span></div>
-          <div class="videotitle"><a href="" target="_blank">【TED】外表不是全部</a></div>
-          <div class="videoinfo"><a href="">74,308次播放</a> | <a href="">1,629次评论</a></div>
-        </div>
+           <!-- 内容 -->
       </div>
     </div>
-    <!--用户登录-->
-   <!--  <div class="right269">
-      <div class="title1">
-        <h1>用户登录</h1>
-      </div>
-      <div class="login">
-    	    <div class="user">用户名：<input type="text" value="请输入用户名"  onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入用户名';}" class="input1"/></div>
-    		<div class="password">密&nbsp;&nbsp;&nbsp;码 ：<input type="password" value="请输入密码"  onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入密码';}" class="input1"/></div>
-        <div class="tiyan"><a href="#">登陆</a></div>
-    		<div class="tiyan"><a href="#">微信扫码</a></div>
-      </div>
-    </div> -->
   </div>
 </div>
 
@@ -224,32 +171,8 @@
 	  <div class="change"><a href="">换一组</a></div>
     </div>
     <div class="bd">
-      <ul class="picList">
-        <li>
-          <div class="pic"><a href="" target="_blank"><img th:src="@{/pic/pic1.jpg}" /></a></div>
-          <div class="titlei"><span class="classtitle"><a href="" target="_blank">红烧茄子</a></span><span class="classinfo">小店：美食城<br/>地点：大兴区
-		  <a href="">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="" target="_blank"><img th:src="@{/pic/pic2.jpg}" /></a></div>
-          <div class="titlei"><span class="classtitle"><a href="" target="_blank">甜点早餐</a></span><span class="classinfo">小店：美食城<br/>地点：大兴区
-		  <a href="">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="" target="_blank"><img th:src="@{/pic/pic3.jpg}" /></a></div>
-          <div class="titlei"><span class="classtitle"><a href="l" target="_blank">美味咖啡拉花</a></span><span class="classinfo">小店：美食城<br/>地点：大兴区
-		  <a href="">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="" target="_blank"><img th:src="@{/pic/pic4.jpg}" /></a></div>
-          <div class="titlei"><span class="classtitle"><a href="" target="_blank">精致美食寿司</a></span><span class="classinfo">小店：美食城<br/>地点：大兴区
-		  <a href="">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="" target="_blank"><img th:src="@{/pic/pic5.jpg}" /></a></div>
-          <div class="titlei"><span class="classtitle"><a href="" target="_blank">粤菜系煲仔饭</a></span><span class="classinfo">小店：美食城<br/>地点：大兴区
-		  <a href="">进入</a></span></div>
-        </li>
+      <ul class="picList"  id="nearbyshoplist">
+       <!-- 内容 -->
       </ul>
     </div>
   </div>
@@ -263,49 +186,8 @@
       </ul>
     </div>
     <div class="bd">
-      <ul class="picList">
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic1.jpg}" /></a></div>
-          <div class="titles"><span class="zyname"><a href="#" target="_blank">红烧茄子</a></span><br />
-            <span class="zyinfo"> 小店：美食城<br />
-            地点：大兴区<br />
-            <a href="#">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic2.jpg}" /></a></div>
-          <div class="titles"><span class="zyname"><a href="#" target="_blank">甜点早餐</a></span><br />
-            <span class="zyinfo"> 小店：美食城<br />
-            地点：大兴区<br />
-            <a href="#">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic3.jpg}" /></a></div>
-          <div class="titles"><span class="zyname"><a href="#" target="_blank">美味咖啡拉花</a></span><br />
-            <span class="zyinfo"> 小店：美食城<br />
-            地点：大兴区<br />
-            <a href="#">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic4.jpg}" /></a></div>
-          <div class="titles"><span class="zyname"><a href="#" target="_blank">精致美食寿司</a></span><br />
-            <span class="zyinfo"> 小店：美食城<br />
-            地点：大兴区<br />
-            <a href="#">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic5.jpg}" /></a></div>
-          <div class="titles"><span class="zyname"><a href="#" target="_blank">粤菜系煲仔饭</a></span><br />
-            <span class="zyinfo"> 小店：美食城<br />
-            地点：大兴区<br />
-            <a href="#">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic5.jpg}" /></a></div>
-          <div class="titles"><span class="zyname"><a href="#" target="_blank">粤菜系煲仔饭</a></span><br />
-            <span class="zyinfo"> 店铺：美食城<br />
-            地点：大兴区<br />
-            <a href="#">进入</a></span></div>
-        </li>
+      <ul class="picList"  id="recommendfoodlist">
+        <!-- 内容 -->
       </ul>
     </div>
   </div>
@@ -324,7 +206,7 @@
         </ul>
       </div>
       <div class="bd">
-        <ul class="infoList">
+        <ul class="infoList"  id="nearbybooking">
           <li><span class="icon"><img th:src="@{/images/qiang.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
           <li><span class="icon"><img th:src="@{/images/ji.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
           <li><span class="icon"><img th:src="@{/images/arrow.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
@@ -346,10 +228,12 @@
       <div class="hd">
         <h1>最近评论</h1>
         <ul>
+        
         </ul>
       </div>
       <div class="bd">
-        <ul class="infoList">
+        <ul class="infoList"  id="nearbycomment">
+       
           <li><span class="icon"><img th:src="@{/images/qiang.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
           <li><span class="icon"><img th:src="@{/images/ji.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
           <li><span class="icon"><img th:src="@{/images/arrow.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
@@ -359,6 +243,7 @@
           <li><span class="icon"><img th:src="@{/images/arrow.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
           <li><span class="icon"><img th:src="@{/images/arrow.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
           <li><span class="icon"><img th:src="@{/images/arrow.jpg}" /></span><a href="#" target="_blank">钢铁是怎样炼成的读怎样炼成的读怎样炼成的读后了我的提感400字</a><span class="jb">25</span></li>
+       
         </ul>
       </div>
     </div>
@@ -375,25 +260,8 @@
 	  <div class="change"><a href="">更多</a></div>
     </div>
     <div class="bd">
-      <ul class="picList">
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic1.jpg}" /></a><span><a href="#" target="_blank">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic2.jpg}" /></a><span><a href="#" target="_blank">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic3.jpg}" /></a><span><a href="#" target="_blank">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic4.jpg}" /></a><span><a href="#" target="_blank">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic5.jpg}" /></a><span><a href="#" target="_blank">进入</a></span></div>
-        </li>
-        <li>
-          <div class="pic"><a href="#" target="_blank"><img th:src="@{/pic/pic1.jpg}" /></a><span><a href="#" target="_blank">进入</a></span></div>
-        </li>
+      <ul class="picList"  id="ShopRecommendlist">
+        <!-- 内容 -->
       </ul>
     </div>
   </div>
@@ -401,9 +269,9 @@
 <div class="clear"></div>
 <div id="footer">
   <div class="copyright">
-    <div class="Navigation"><a href="#">关于目课</a><a href="#">合作伙伴</a><a href="#">营销中心</a><a href="#">廉正举报</a><a href="#">联系客服</a><a href="#">开放平台</a><a href="#">诚征英才</a><a href="#">联系我们</a><a href="#">网站地图</a><a href="#">法律声明</a></div>
+    <div class="Navigation"><a href="#">关于B_Booking</a><a href="#">合作伙伴</a><a href="#">营销中心</a><a href="#">廉正举报</a><a href="#">联系客服</a><a href="#">开放平台</a><a href="#">诚征英才</a><a href="#">联系我们</a><a href="#">网站地图</a><a href="#">法律声明</a></div>
     <div class="copy">Copyright © 2014 MYCLASS.C0M. All Rights Reserved. Designed by:<a href="http://www.wanhu.cn">Wanhu</a><br />
-      目课网 版权所有 目课网经营许可证<br />
+      B_Booking 版权所有B_Booking经营许可证<br />
       </div>
   </div>
 </div>
@@ -440,9 +308,11 @@
 </TABLE>
 <DIV class=Obtn></DIV></DIV>
 <SCRIPT  th:src="@{/js/index_left_nav.js}"></SCRIPT>
-
+<!-- ajax获取信息 -->
+<script type="text/javascript" th:src="@{/js/customer/showmenu.js}"></script>
 <script type="text/javascript" th:src="@{/js/index_solid.js}"></script>
 <script type="text/javascript" th:src="@{/js/column.js}"></script>
+
 <!--浮动导航-->
 
 </body>
