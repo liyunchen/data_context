@@ -14,9 +14,9 @@ public class Seat {
 
     private Integer cell;
 
-    private Date start;
+    private String start;
 
-    private Date end;
+    private String end;
 
     @Override
 	public String toString() {
@@ -83,28 +83,28 @@ public class Seat {
     /**
      * @return start
      */
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
     /**
      * @param start
      */
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
     /**
      * @return end
      */
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
     /**
      * @param end
      */
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 }

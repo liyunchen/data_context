@@ -89,8 +89,19 @@ public class SeatServiceImpl extends BaseService<Seat> implements SeatService {
 	}
 
 	@Override
-	public String selectseat(String[] selects, String start, String end, int cell) {
-		// TODO Auto-generated method stub
+	public String selectseat(String[] selects,String shop_id, String start, String end, int cell) {
+		if(shop_id!=null  &&  !shop_id.equals("")) {
+			for(String s:selects) {
+				  Seat seat = new Seat();
+				  seat.setName(s);
+				  seat.setCell(cell);
+				  seat.setShopid(shop_id);
+				  seat.setStart(start);
+				  seat.setEnd(end);
+				  seatMapper.selectseat(seat);
+			}
+			return "ok";
+		}			
 		return null;
 	}
 

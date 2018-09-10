@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
 
@@ -55,22 +56,27 @@ public class SeatController {
 	//预约座位
 	@ResponseBody
 	@RequestMapping(value="/selectseat")
-	public String  selectseat(HttpServletRequest request,String[] selects,String start,String end,int cell){
+	public String  selectseat(HttpServletRequest request,String[] selects,String shop_id,String start,String end,int cell){
 		String string="";
 		if(selects!=null) {
-			//for(String s :selects) {
-			//	System.err.println(s);
-			//}
-			string= seatService.selectseat(selects,start,end,cell);	
+
+			string= seatService.selectseat(selects,shop_id,start,end,cell);	
 		}
-		
-		
 		
 		return string;
 	}
 	
-	//列表查询
-	/*@ResponseBody
+	//进入路线
+	@RequestMapping(value="/toroute")
+	public ModelAndView  toroute(String endname){
+		ModelAndView model = new ModelAndView();
+		model.addObject("endname", endname);
+		model.setViewName("map/bookingroute");
+		return model;
+	}
+	/*
+	//添加列表查询
+	@ResponseBody
 	@RequestMapping(value="/getAllList")
     public Map<String,Object> getAllList(Menu menu, String draw,
                                      @RequestParam(required = false, defaultValue = "1") int start,
@@ -84,6 +90,7 @@ public class SeatController {
         map.put("data", pageInfo.getList());
         return map;
     }
+	
 	
 	//添加
 	@RequestMapping(value="/addmenu")

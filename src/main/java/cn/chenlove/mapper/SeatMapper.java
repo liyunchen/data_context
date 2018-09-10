@@ -10,4 +10,6 @@ public interface SeatMapper extends MyMapper<Seat> {
 	void deletebyshop(String shopid);
 
 	List<Seat> getAllSeat(Seat seat);
+
+	void  selectseat(Seat seat);
 }

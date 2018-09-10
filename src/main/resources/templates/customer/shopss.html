@@ -50,7 +50,9 @@
               height:663px;
             }
 </style>
-<script type="text/javascript" th:src="@{/js/jquery-1.7.2.min.js}"></script> 
+<script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script> -->
+<!-- <script type="text/javascript" th:src="@{/js/jquery-1.7.2.min.js}"></script>  -->
 <script type="text/javascript" th:src="@{/js/jquery.datetimepicker.full.min.js}"></script> 
 </head>
 <body class="body">
@@ -131,14 +133,18 @@
 <div class="kssearch12">
         <input type="hidden"  th:value="${shop.id}" id="shop_id"/>
         <img th:src="@{/pic/pic1.jpg}"  />
+        <input type="hidden" id="shop_address"  th:value="${shop.address}"/>
 		<div class="shop" >
 			  <h1  th:text="'小店：'+${shop.name}"></h1>
               <h1  th:text="'地址：'+${shop.address}"></h1>
               <h1  th:text="'简介：'+${shop.introduction}"></h1>
               <h1  th:text="'电话：'+${shop.phone}"></h1>
 			  <h1><a href="">查看评论(6)</a></h1>
-			  <h1><a href="">距离</a></h1>
-			  <h2><span ><input type="button" onclick="openss();" value="预约"  style="width:90px;height:45px;color:#fff;background-color:#3db1ea;" /></span></h2>
+			  <h1><a href="">距离</a></h1><br>
+			  <h2><span >
+			      <input type="button" onclick="selectroute();" value="路线"  style="width:90px;height:45px;color:#fff;background-color:#3db1ea;" />
+			      <input type="button" onclick="openss();" value="预约"  style="width:90px;height:45px;color:#fff;background-color:#3db1ea;" />
+			  </span></h2>
 			 
 		</div>
 </div>
@@ -154,50 +160,15 @@
 <div class="kssearchbox1">
 <span class="sspx">排序</span>
 <!-- <div class="SelectBox">
+ 
  <span class="SelectText"></span>
  <dl class="SelectList">
      <dt><a href="javascript:void(0)">价格</a></dt>
  </dl>
-</div> -->
+</div>  -->
 
-<script type="text/javascript">
- /*  $(".SelectBox").each(function(){
-		$(this).find(".SelectText").click(function(){
-			 var SelectListStatis = $(this).next(".SelectList").css("display");
-			 if(SelectListStatis == "none"){
-					$(this).next(".SelectList").show();
-				 }
-			 else{
-					$(this).next(".SelectList").hide();
-				 }
-		 });
-		 $(this).find(".SelectList").children("dt").click(function(){
-				 var Value = $(this).find("a").text();
-				 $(this).parents(".SelectList").prev(".SelectText").text(Value);
-				 $(this).parents(".SelectList").hide();
-			 });
-		 $(this).mouseleave(function(){ $(this).find(".SelectList").hide(); });
-	}); */
-</script>
-<script type="text/javascript">
-  /* $(".SelectBox1").each(function(){
-		$(this).find(".SelectText1").click(function(){
-			 var SelectListStatis = $(this).next(".SelectList1").css("display");
-			 if(SelectListStatis == "none"){
-					$(this).next(".SelectList1").show();
-				 }
-			 else{
-					$(this).next(".SelectList1").hide();
-				 }
-		 });
-		 $(this).find(".SelectList1").children("dt").click(function(){
-				 var Value = $(this).find("a").text();
-				 $(this).parents(".SelectList1").prev(".SelectText1").text(Value);
-				 $(this).parents(".SelectList1").hide();
-			 });
-		 $(this).mouseleave(function(){ $(this).find(".SelectList1").hide(); });
-	}); */
-</script>
+
+
 <div class="wdss"><input type="text" class="input1" /><input type="image" th:src="@{/images/search.jpg}"  class="btn1"/></div>
 <span class="ssjg"  id="dishesListlength">共0个筛选结果</span><div class="page1"><span class="num"><font class="f_blue">1</font>/41</span><span class="prev">上一页</span><span class="next"><a href="#">下一页</a></span> </div>
 </div>
@@ -219,7 +190,6 @@
       </div>
 </div>
 </div>
-
 
 <!-- 选座弹框 -->
 <div class="modal fade" id="openseat" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
@@ -274,12 +244,18 @@
     </div>
 </div>
 <!--end-Footer-part-->
-<script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
-<!-- <script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script> -->
-<script type="text/javascript" th:src="@{/js/jquery.seat-charts.min.js}"></script>
+<!-- <script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script> -->
 <script th:src="@{/js/bootstrap.min.js}"></script>
+<!-- <script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script> -->
+<script th:src="@{/js/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.seat-charts.min.js}"></script>
+
 <script type="text/javascript">
-    
+	function selectroute(){
+		var endname =document.getElementById("shop_address").value;
+		//window.location.href="/seat/toroute?endname="+endname;
+		window.open('/seat/toroute?endname='+endname);
+	}
     function openss(){
 
     	$('#openseat').modal();
@@ -292,9 +268,9 @@
 			var selects=new Array()
             var unavaliable=new Array();
             var arr=new Array();             //声明一维数组        
-            for(var x=0;x<14;x++){
+            for(var x=1;x<15;x++){
                   arr[x]=new Array();        //声明二维数组
-                  for(var y=0;y<27;y++){
+                  for(var y=1;y<28;y++){
                        arr[x][y]='_';          //数组初始化为0
                   }
             }
@@ -330,10 +306,10 @@
                 	} 
                 }
             });
-             for(var x=0;x<14;x++){
+             for(var x=1;x<15;x++){
                 //arr[x]=new Array();        //声明二维数组
                 var textt="";
-                for(var y=0;y<15;y++){
+                for(var y=1;y<15;y++){
                 	textt+=arr[x][y];          //数组初始化为0
                 } 
                 mycars[x]=textt;
@@ -345,7 +321,7 @@
 			//mycars[5]='"cccccccccccccccccccccc_cccc"';
 			 
 			text_map=[]
-			for(var k=0;k<14;k++){
+			for(var k=1;k<15;k++){
 			    if(k==mycars.length-1){
 				   text_map.push(mycars[k]);
 				}else{
@@ -378,9 +354,7 @@
                         ]
                     },
                     click: function() {
-						//alert(this.settings.id);
-						//alert(this.status());
-						
+
                         if (this.status() == 'available' ) { //若为可选座状态，添加座位
                             $('<li>' + (this.settings.row + 1) + '_' + this.settings.label + '</li>')
                                     .attr('id', 'cart-item-' + this.settings.id)
@@ -402,38 +376,15 @@
                         }
                     }
                 });
-                //渲染座位
-                /*
-                $.ajax({
-                    async:false,
-                    type : "get",
-                    data:{cell:1},
-                    url: "/seat/getAllSeat",
-                    dataType:'json',
-                    success: function(data){
-                    	if(data!=null){ 
-                    		var seats_chose = document.getElementById("seats_chose");
-
-                    		for(var k=0;k<data.length;k++){
-                    			seat_List.push(data[k].name);
-                    			$('<li>' + data[k].name + '</li>')
-                                .attr('id', 'cart-item-' + data[k].name)
-                                .data('seatId', data[k].name)
-                                .appendTo($cart);
-
-                    			sc.get([data[k].name]).status('selected');
-                    		}
-                    	} 
-                    }
-                });
-                */
+                
+         
                 //设置已售出的座位
                 //console.log(unavaliable.length);
                 for(var t=0;t<unavaliable.length;t++){
                 	sc.get([unavaliable[t]]).status('unavailable');
                 	
                 }
-                //sc.get(['8_13']).status('unavailable');
+                
                 //sc.get(['8_14']).status('unavailable');
                 //sc.get(['3_10']).status('unavailable');
             });
@@ -449,66 +400,57 @@
             }
 			$('.bookingbtnbug').click(function(){
 
+				 /***********验证信息  start************/
 				 var datetimepicker1 = document.getElementById("datetimepicker1").value;
 				 var datetimepicker2 = document.getElementById("datetimepicker2").value;
 				 if(datetimepicker1!=null & datetimepicker1!=""){
-					 console.log(datetimepicker1);
 				 }else{
-					 console.log("请选择起始时间");
+					 //console.log("请选择起始时间");
+					 layer.msg('请选择起始时间');
 				 }
-				 
 				 if(datetimepicker2!=null & datetimepicker2!=""){
-					 console.log(datetimepicker2);
 				 }else{
-					 console.log("请选择结束时间");
+					 //console.log("请选择结束时间");
+					 layer.msg("请选择结束时间");
 				 }
 				 selects=[];
 			     $("#seats_chose").each(function () {
                     $(this).find('li').each(function() {
-                      //tmp = $(this).text();
-                     
                       selects.push($(this).text());
                     });
- 
                  });
 			     if(selects.length>0){
-			    	 console.log(selects.length);
 			     }else{
-			    	 console.log("请选座");
+			    	 //console.log("请选座");
+			    	 layer.msg("请选座");
 			     }
-				
-				 
-				 /*
-				 selects=[];
-			     $("#seats_chose").each(function () {
-                    $(this).find('li').each(function() {
-                      //tmp = $(this).text();
-                     
-                      selects.push($(this).text());
-                    });
- 
-                 });
-                  */
-                 $.ajax({
-		            cache: true,
-		            traditional: true,
-		            type: "POST",
-		            url:'seat/selectseat',
-		            data:{selects:selects,start:datetimepicker1,end:datetimepicker2,cell:1},
-		            async: false,
-		            success: function(data) {
-		                 if(data=="ok"){
-		                    layer.msg('预约成功');
-		                    window.location.reload();
-		                    
-		                }else{
-		                    layer.msg('预约失败');
-		                    
-		                }
-		                //$('#adddishes').modal('hide'); 
-		            }
-		        });
-				 */
+			     /***********验证信息  end************/
+			     
+			     
+			     var shop_id = document.getElementById("shop_id").value;
+                 if(selects.length>0 &  datetimepicker1!=null & datetimepicker2!=null & datetimepicker1!="" & datetimepicker2!=""){
+             
+                	 $.ajax({
+      		            cache: true,
+      		            traditional: true,
+      		            type: "POST",
+      		            url:'/seat/selectseat',
+      		            data:{selects:selects,shop_id:shop_id,start:datetimepicker1,end:datetimepicker2,cell:1},
+      		            //dataType: 'json',
+      		            async: false,
+      		            success: function(data) {
+      		            	
+      		                if(data=="ok"){
+      		                    layer.msg('预约成功');
+      		                }else{
+      		                    layer.msg('预约失败'); 
+      		                }
+      		                window.location.reload();
+      		                $('#openseat').modal('hide');
+      		            }
+      		        });
+                  }
+                 
 			});
 			
         </script>
@@ -524,5 +466,6 @@
 </div>
 <!-- ajax获取信息 -->
 <script type="text/javascript" th:src="@{/js/customer/shopss.js}"></script>
+
 </body>
 </html>

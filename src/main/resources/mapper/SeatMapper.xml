@@ -9,8 +9,8 @@
     <result column="shopid" jdbcType="VARCHAR" property="shopid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="cell" jdbcType="INTEGER" property="cell" />
-    <result column="start" jdbcType="TIMESTAMP" property="start" />
-    <result column="end" jdbcType="TIMESTAMP" property="end" />
+    <result column="start" jdbcType="VARCHAR" property="start" />
+    <result column="end" jdbcType="VARCHAR" property="end" />
   </resultMap>
   
   <delete id="deletebyshop" parameterType="String">
@@ -19,5 +19,11 @@
   <select id="getAllSeat" resultMap="BaseResultMap" parameterType="cn.chenlove.model.Seat">
         select id,shopid,name,cell,start,end from seat where  shopid =#{shopid}   and  cell = #{cell}
   </select>
+  <update id="selectseat"  parameterType="cn.chenlove.model.Seat">
+        update seat 
+        set start=#{start} ,end =#{end}
+        where shopid = #{shopid} and cell = #{cell}  and name = #{name}
+        
+  </update>
   
 </mapper>
