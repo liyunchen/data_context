@@ -21,4 +21,11 @@ public interface DishesService   extends IService<Dishes> {
 	List<Dishes> getDishesList();
 
 	List<Dishes> getByType(String type);
+	/***********推荐菜单***********/
+	List<Dishes> getRecommenddishesList(String type);
+	
+	PageInfo<Dishes> selectDishesListByPage(String shop_id, String conditiondishes, int start, int length);
+	int selectcountDishes(String shop_id, String conditiondishes, int currentpage, int length);
+	PageInfo<Dishes> pselectDishesListByPage(String shop_id, String type, int currentpage, int length);
+	int pselectcountDishes(String shop_id, String type, int currentpage, int length);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class DishesController {
                                      @RequestParam(required = false, defaultValue = "10") int length){
         Map<String,Object> map = new HashMap<>();
         PageInfo<Dishes> pageInfo = dishesService.selectDishesByPage(dishes, start, length);
+
         System.out.println("pageInfo.getTotal():"+pageInfo.getTotal());
         map.put("draw",draw);
         map.put("recordsTotal",pageInfo.getTotal());
@@ -45,7 +47,52 @@ public class DishesController {
         map.put("data", pageInfo.getList());
         return map;
     }
-	
+	//菜单关键字条件列表查询
+	@ResponseBody
+	@RequestMapping(value="/conditiondishes")
+    public Map<String,Object> conditiondishes(HttpServletRequest request,String shop_id,String conditiondishes,
+                                     @RequestParam(required = false, defaultValue = "1") int currentpage,
+                                     @RequestParam(required = false, defaultValue = "12") int length){
+        Map<String,Object> map = new HashMap<>();
+        PageInfo<Dishes> pageInfo = dishesService.selectDishesListByPage(shop_id,conditiondishes, currentpage, length);
+        
+        int totoldishes = dishesService.selectcountDishes(shop_id,conditiondishes, currentpage, length);
+        int totalpage=0;
+        if(totoldishes%length==0) {
+        	totalpage = totoldishes/length;
+        }else {
+        	totalpage = totoldishes/length+1;
+        }
+        
+        
+        //System.out.println("pageInfo.getTotal():"+pageInfo.getTotal());
+        map.put("currentpage",currentpage);
+        map.put("Totalpage",totalpage);
+        map.put("recordsFiltered",pageInfo.getTotal());
+        map.put("totoldishes", totoldishes);
+        map.put("data", pageInfo.getList());
+        return map;
+    }
+	//菜品关键字条件列表查询
+	@ResponseBody
+	@RequestMapping(value="/disheslistbytype")
+    public Map<String,Object> disheslistbytype(HttpServletRequest request,String shop_id,String type,
+                                     @RequestParam(required = false, defaultValue = "1") int currentpage,
+                                     @RequestParam(required = false, defaultValue = "12") int length){
+        Map<String,Object> map = new HashMap<>();
+        PageInfo<Dishes> pageInfo = dishesService.pselectDishesListByPage(shop_id,type, currentpage, length);
+        
+        int totoldishes = dishesService.pselectcountDishes(shop_id,type,currentpage, length);
+        int totalpage = totoldishes/length+1;
+        
+        //System.out.println("pageInfo.getTotal():"+pageInfo.getTotal());
+        map.put("currentpage",currentpage);
+        map.put("Totalpage",totalpage);
+        map.put("recordsFiltered",pageInfo.getTotal());
+        map.put("totoldishes", totoldishes);
+        map.put("data", pageInfo.getList());
+        return map;
+    }
 	//添加
 	@RequestMapping(value="/adddishes")
 	@ResponseBody

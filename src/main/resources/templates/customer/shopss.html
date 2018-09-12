@@ -152,6 +152,7 @@
 		<div class="address">
 		<h1>菜品</h1>
 			 <h2  id="menuList">
+			    
 					<!-- 内容 -->
 			 </h2>
 		</div>
@@ -159,32 +160,22 @@
 </div>
 <div class="kssearchbox1">
 <span class="sspx">排序</span>
-<!-- <div class="SelectBox">
- 
- <span class="SelectText"></span>
- <dl class="SelectList">
-     <dt><a href="javascript:void(0)">价格</a></dt>
- </dl>
-</div>  -->
 
-
-
-<div class="wdss"><input type="text" class="input1" /><input type="image" th:src="@{/images/search.jpg}"  class="btn1"/></div>
-<span class="ssjg"  id="dishesListlength">共0个筛选结果</span><div class="page1"><span class="num"><font class="f_blue">1</font>/41</span><span class="prev">上一页</span><span class="next"><a href="#">下一页</a></span> </div>
+<div class="wdss"><input type="text" class="input1"  id="conditiondishes" /><input type="image" th:src="@{/images/search.jpg}" onclick="conditiondishesList();" class="btn1"/></div>
+<span class="ssjg"  id="dishesListlength">共0个筛选结果</span><div class="page1"><span class="num"  id="currentandtotal"></span><span class="prev"><a href="javascript:void(0);"  class="prebtngopage">上一页</a></span><span class="next"><a href="javascript:void(0);"  class="nextbtngopage">下一页</a></span> </div>
 </div>
-
-        
-        <div class="splist"  id="dishesList">
+    
+        <div class="splist"  id="dishesList">   
           <!-- 内容 -->  
       </div>
-	  <div class="page"><span class="prev">上一页</span><span class="num"><a href="#" class="on">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><a href="#">9</a><a href="#">10</a></span><span class="next"><a href="#">下一页</a></span><em>217/5</em>转到
-        <input name="textfield" type="text" value="5" class="inputpage"/>
+	  <div class="page"><span class="prev"><a href="javascript:void(0);" class="prebtngopage">上一页</a></span><span class="num"  id="showpage"></span><span class="next"><a href="javascript:void(0);"  class="nextbtngopage">下一页</a></span><em id="currentandtotal2"></em>转到
+        <input name="textfield" type="text" value=""  id="inputpage" class="inputpage"/>
         页
-        <input type="submit" name="Submit" value="GO" class="btngo"/>
+        <input type="submit" name="Submit" value="GO" class="btngopage"/>
       </div>
 </div>
 <div class="right213">
-<div class="title"><h1>推荐菜品</h1></div>
+<div class="title"><h1>店家推荐</h1></div>
 <div class="likelist"  id="RecommenddishesList">
        <!-- 内容 -->
       </div>
@@ -253,7 +244,6 @@
 <script type="text/javascript">
 	function selectroute(){
 		var endname =document.getElementById("shop_address").value;
-		//window.location.href="/seat/toroute?endname="+endname;
 		window.open('/seat/toroute?endname='+endname);
 	}
     function openss(){

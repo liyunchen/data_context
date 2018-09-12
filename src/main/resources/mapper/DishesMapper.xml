@@ -20,4 +20,70 @@
       from dishes
       where type=#{type} and enable=1
   </select>
+  <!-- 推荐菜单 -->
+  <select id="getRecommenddishesList"  parameterType="String" resultMap="BaseResultMap">
+      select id,name,type,pic,recommend,price,sort,introduction
+      from dishes
+      where type=#{type} and enable=1 and recommend=1
+  </select>
+  <!-- 菜单关键字条件列表查询 -->
+  <select id="selectDishesByCondition"   parameterType="cn.chenlove.entity.SelectDishesList" resultMap="BaseResultMap">
+      select d.id,d.name,d.type,d.pic,d.recommend,d.price,d.introduction 
+      from shop s 
+	  join shop_menu sm on sm.shop_id = s.id 
+	  join dishes d on d.type=sm.menu_id 
+	  where  s.id = #{shop_id}
+	  and 1=1  
+	  and enable=1 
+      <if test="conditiondishes != '' and conditiondishes != null">  
+             and d.name  like  '%' #{conditiondishes} '%'  
+      </if>
+    
+      limit  #{startrows},#{endrows}
+      
+  </select>
+  
+  <select id="selectcountDishes"   parameterType="cn.chenlove.entity.SelectDishesList" resultType="Integer">
+      select count(*)
+      from shop s 
+	  join shop_menu sm on sm.shop_id = s.id 
+	  join dishes d on d.type=sm.menu_id 
+	  where  s.id = #{shop_id}
+	  and 1=1   
+	  and enable=1 
+      <if test="conditiondishes != '' and conditiondishes != null">  
+             and d.name  like  '%' #{conditiondishes} '%'  
+      </if>
+  </select>
+  <!-- 菜品关键字条件列表查询 -->
+  <select id="pselectDishesByCondition"   parameterType="cn.chenlove.entity.SelectDishesList" resultMap="BaseResultMap">
+      select d.id,d.name,d.type,d.pic,d.recommend,d.price,d.introduction 
+      from shop s 
+	  join shop_menu sm on sm.shop_id = s.id 
+	  join dishes d on d.type=sm.menu_id 
+	  where  s.id = #{shop_id}
+	  and 1=1  
+	  and enable=1 
+	  <!-- and d.type=#{conditiondishes}  -->
+      <if test="conditiondishes != '' and conditiondishes != null">  
+             and d.type  like  '%' #{conditiondishes} '%'  
+      </if>
+      limit  #{startrows},#{endrows}
+      
+  </select>
+  
+  <select id="pselectcountDishes"   parameterType="cn.chenlove.entity.SelectDishesList" resultType="Integer">
+      select count(*)
+      from shop s 
+	  join shop_menu sm on sm.shop_id = s.id 
+	  join dishes d on d.type=sm.menu_id 
+	  where  s.id = #{shop_id}
+	  and 1=1   
+	  and enable=1 
+      <!-- and d.type=#{conditiondishes}  -->
+      <if test="conditiondishes != '' and conditiondishes != null">  
+             and d.type  like  '%' #{conditiondishes} '%'  
+      </if>
+  </select>
+  
 </mapper>

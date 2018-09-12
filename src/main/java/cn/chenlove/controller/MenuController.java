@@ -51,6 +51,7 @@ public class MenuController {
         return map;
     }
 	
+	
 	//添加
 	@RequestMapping(value="/addmenu")
 	@ResponseBody
@@ -104,6 +105,25 @@ public class MenuController {
 			List<Dishes>  list = new ArrayList<Dishes>();
             for(ShopMenu shopMenu:shopMenuList) {
             	List<Dishes> disheslist= dishesService.getByType(shopMenu.getMenuId());
+            	if(disheslist!=null && disheslist.size()>0) {
+            		for(Dishes dishes:disheslist) {
+            			list.add(dishes);
+            		}	
+            	}
+            }
+            return list;
+		}
+		return null;
+	}
+	/***********推荐菜单***********/
+	@RequestMapping(value="/getRecommenddishesList")
+	@ResponseBody
+	public List<Dishes> getRecommenddishesList(String id) {
+		List<ShopMenu> shopMenuList = shopMenuMapper.getShopMenuByid(id);
+		if(shopMenuList!=null && shopMenuList.size()>0) {
+			List<Dishes>  list = new ArrayList<Dishes>();
+            for(ShopMenu shopMenu:shopMenuList) {
+            	List<Dishes> disheslist= dishesService.getRecommenddishesList(shopMenu.getMenuId());
             	if(disheslist!=null && disheslist.size()>0) {
             		for(Dishes dishes:disheslist) {
             			list.add(dishes);
